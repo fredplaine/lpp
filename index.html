@@ -6,8 +6,18 @@
     <title>Le Petit Prince</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
+        :root {
+            color-scheme: light;
+        }
+
         body {
-            background: linear-gradient(to bottom right, #1a1a2e, #c1121f, #1a1a2e);
+            background-color: #8fd1f2;
+            background-image:
+                radial-gradient(1px 1px at 24px 32px, rgba(255, 255, 255, 0.9) 50%, transparent 100%),
+                radial-gradient(1px 1px at 76px 89px, rgba(32, 91, 133, 0.2) 50%, transparent 100%),
+                linear-gradient(132deg, #52b8eb 0%, #7ccbf0 52%, #d5effb 100%);
+            background-size: 120px 120px, 180px 180px, 100% 100%;
+            background-attachment: fixed;
             min-height: 100vh;
         }
         
@@ -63,7 +73,7 @@
         }
     </style>
 </head>
-<body class="text-white">
+<body class="text-slate-800">
     <div id="root"></div>
     <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
     <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
@@ -923,15 +933,15 @@ if (!isMyRole(line)) {
                 React.createElement('div', { className: "max-w-4xl mx-auto" },
                     React.createElement('div', { className: "text-center mb-3 pt-4" },
                         React.createElement('h1', { className: "text-4xl font-bold mb-2" }, 'Le Petit Prince'),
-                        React.createElement('p', { className: "text-orange-300 text-lg" }, `${selectedRole}`),
-                        React.createElement('p', { className: "text-orange-400/70 text-sm mt-1" }, '🎭 Adaptation théâtrale complète'),
+                        React.createElement('p', { className: "text-slate-700 text-lg" }, `${selectedRole}`),
+                        React.createElement('p', { className: "text-slate-600 text-sm mt-1" }, '🎭 Adaptation théâtrale complète'),
                         
                         // Indicateur de gestes
                         showSwipeHint && React.createElement('div', { className: "mt-4 flex items-center justify-center gap-2 swipe-hint" },
                             React.createElement('svg', { width: "24", height: "24", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2" },
                                 React.createElement('path', { d: "M14 5l7 7m0 0l-7 7m7-7H3" })
                             ),
-                            React.createElement('span', { className: "text-sm text-orange-300" }, 'Swipe gauche/droite pour naviguer')
+                            React.createElement('span', { className: "text-sm text-slate-700" }, 'Swipe gauche/droite pour naviguer')
                         )
                     ),
                     React.createElement('div', { className: "mb-6" },
@@ -945,11 +955,11 @@ if (!isMyRole(line)) {
                                     const s = JSON.parse(localStorage.getItem('femmesTRAE_settings') || '{}');
                                     localStorage.setItem('femmesTRAE_settings', JSON.stringify({ ...s, selectedRole: newRole }));
                                 },
-                                className: "min-w-0 w-full p-1.5 bg-slate-700 rounded border border-slate-600 text-white text-xs"
+                                className: "min-w-0 w-full p-1.5 bg-white/70 rounded border border-sky-300 text-slate-800 text-xs"
                             }, allRoles.map(role => React.createElement('option', { key: role, value: role }, role)))
                         ),
                         scriptLoadError && React.createElement('label', {
-                            className: "block mb-3 p-2 text-center text-sm text-orange-200 bg-slate-800 rounded cursor-pointer"
+                            className: "block mb-3 p-2 text-center text-sm text-slate-700 bg-red-100/90 rounded cursor-pointer"
                         },
                             'Sélectionner LEPETITPRINCE_Theatre.txt pour charger les 26 scènes',
                             React.createElement('input', {
@@ -978,19 +988,19 @@ if (!isMyRole(line)) {
                                         window.speechSynthesis.cancel();
                                     },
                                     className: `w-full min-h-[40px] py-2 px-1 rounded text-xs leading-tight text-center whitespace-nowrap transition-all ${
-                                        currentSection === idx ? 'bg-red-600 shadow-lg shadow-red-500/50' : 'bg-slate-700 hover:bg-slate-600'
+                                        currentSection === idx ? 'bg-red-300 text-slate-900 shadow-md shadow-red-400/40' : 'bg-white/60 text-slate-800 hover:bg-white/90'
                                     }`
                                 }, sceneRomanNumerals[idx] || String(idx + 1))
                             )
                         ),
                         React.createElement('div', { className: "flex items-center justify-between mt-2" },
-                            React.createElement('p', { className: "text-sm text-orange-300" }, 
+                            React.createElement('p', { className: "text-sm text-slate-700" },
                                 `${currentLine + 1} / ${sections[currentSection].lines.length} lignes`
                             ),
                             React.createElement('button', {
                                 onClick: () => setTurboMode(!turboMode),
                                 className: `flex items-center gap-2 px-3 py-1 rounded-lg text-sm transition-all ${
-                                    turboMode ? 'bg-yellow-600 shadow-lg shadow-yellow-500/50' : 'bg-slate-700 hover:bg-slate-600'
+                                    turboMode ? 'bg-amber-200 text-slate-900 shadow-md shadow-amber-300/50' : 'bg-white/60 text-slate-800 hover:bg-white/90'
                                 }`,
                                 title: "Mode Turbo : saute à la réplique juste avant le Président"
                             },
@@ -999,29 +1009,29 @@ if (!isMyRole(line)) {
                             )
                         )
                     ),
-                    React.createElement('div', { className: "bg-slate-800/50 backdrop-blur rounded-2xl p-6 mb-6 min-h-[300px] border border-red-500/20" },
+                    React.createElement('div', { className: "bg-white/65 backdrop-blur rounded-2xl p-6 mb-6 min-h-[300px] border border-sky-300/70 shadow-sm" },
                         React.createElement('div', { className: "flex items-start gap-4 mb-4" },
                             React.createElement('div', { 
                                 className: `px-3 py-1 rounded-full text-sm font-semibold ${
-                                    isMyRole(currentLineData) ? 'bg-green-600' : 
-                                    currentLineData.gender === 'female' ? 'bg-pink-600' : 'bg-blue-600'
+                                    isMyRole(currentLineData) ? 'bg-sky-200 text-slate-800' :
+                                    currentLineData.gender === 'female' ? 'bg-amber-200 text-slate-800' : 'bg-blue-200 text-slate-800'
                                 }`
                             }, normalizeCharacter(currentLineData.character))
                         ),
                         React.createElement('div', { className: "text-xl leading-relaxed" },
                             isMyRole(currentLineData) ? 
                                 React.createElement('div', {
-                                    className: `bg-green-900/30 border-l-4 border-green-500 p-4 rounded transition-all ${
-                                        !revealedLine && !showPrompter ? 'cursor-pointer hover:bg-green-900/40' : ''
-                                    } ${showPrompter ? 'shadow-lg shadow-green-500/30' : ''}`
+                                    className: `bg-sky-100/90 border-l-4 border-sky-500 p-4 rounded transition-all ${
+                                        !revealedLine && !showPrompter ? 'cursor-pointer hover:bg-sky-100' : ''
+                                    } ${showPrompter ? 'shadow-md shadow-sky-400/30' : ''}`
                                 },
                                     React.createElement('div', { className: "flex justify-between items-center mb-2" },
-                                        React.createElement('p', { className: "text-green-100 font-semibold" }, `🎭 ${selectedRole.toUpperCase()}`),
+                                        React.createElement('p', { className: "text-slate-800 font-semibold" }, `🎭 ${selectedRole.toUpperCase()}`),
                                         showPrompter && React.createElement('div', { className: "flex items-center gap-2" },
                                             prompterState === 'hidden' ? React.createElement(EyeOffIcon) : 
                                             prompterState === 'hint' ? React.createElement(EyeIcon) :
                                             prompterState === 'audio' ? React.createElement(Volume2Icon) : React.createElement(EyeIcon),
-                                            React.createElement('span', { className: "text-xs text-green-300" },
+                                            React.createElement('span', { className: "text-xs text-sky-800" },
                                                 prompterState === 'hidden' ? `Indice dans ${prompterTimer}s` :
                                                 prompterState === 'hint' ? 'Indice : 7 premiers mots' :
                                                 prompterState === 'audio' ? 'Lecture en cours' : 'Texte complet'
@@ -1032,7 +1042,7 @@ if (!isMyRole(line)) {
                                         React.createElement('div', null,
                                             React.createElement('p', { 
                                                 className: `cursor-pointer transition-colors mobile-tap-area ${
-                                                    prompterState === 'audio' ? 'text-green-300' : 'text-white hover:text-green-200'
+                                                    prompterState === 'audio' ? 'text-sky-800' : 'text-slate-800 hover:text-sky-900'
                                                 }`,
                                                 onClick: showPrompter ? handlePrompterClick : () => handleTextTap(currentLineData.text),
                                                 title: showPrompter ? 
@@ -1044,37 +1054,37 @@ if (!isMyRole(line)) {
                                             }, 
                                                 showPrompter ? getPrompterText(currentLineData.text) : currentLineData.text
                                             ),
-                                            !showPrompter && React.createElement('p', { className: "text-green-300/70 text-sm mt-2 italic" }, 
+                                            !showPrompter && React.createElement('p', { className: "text-sky-800/80 text-sm mt-2 italic" },
                                                 presidentSpeechState === 'playing' ? '⏸ Cliquez pour mettre en pause' :
                                                 presidentSpeechState === 'paused' ? '▶ Cliquez pour reprendre' :
                                                 '🔊 Cliquez sur le texte pour l\'entendre'
                                             )
                                         ) :
                                         React.createElement('p', { 
-                                            className: "text-green-300/50 italic text-center py-8 mobile-tap-area",
+                                            className: "text-sky-800/70 italic text-center py-8 mobile-tap-area",
                                             onClick: () => setRevealedLine(true)
                                         }, 'Cliquez pour révéler votre texte')
                                 ) :
-                                React.createElement('p', { className: "text-gray-200 text-display" }, currentLineData.text)
+                                React.createElement('p', { className: "text-slate-700 text-display" }, currentLineData.text)
                         )
                     ),
                     React.createElement('div', { className: "flex justify-center gap-3 mb-6 mobile-controls" },
-                        React.createElement('button', { onClick: handleReset, className: "p-4 bg-slate-700 hover:bg-slate-600 rounded-full transition-all mobile-tap-area control-button flex items-center justify-center", title: "Recommencer" }, React.createElement(RotateCcwIcon)),
-                        React.createElement('button', { onClick: handlePrevious, className: "p-4 bg-slate-700 hover:bg-slate-600 rounded-full transition-all disabled:opacity-50 disabled:cursor-not-allowed mobile-tap-area control-button flex items-center justify-center", disabled: currentSection === 0 && currentLine === 0, title: "Précédent" }, React.createElement(SkipBackIcon)),
-                        React.createElement('button', { onClick: handleNext, className: "p-5 bg-red-600 hover:bg-red-500 rounded-full shadow-lg shadow-red-500/50 transition-all mobile-tap-area control-button flex items-center justify-center", title: "Suivant" }, React.createElement(SkipForwardIcon)),
+                        React.createElement('button', { onClick: handleReset, className: "p-4 bg-white/65 text-slate-800 hover:bg-white border border-sky-200 rounded-full transition-all mobile-tap-area control-button flex items-center justify-center", title: "Recommencer" }, React.createElement(RotateCcwIcon)),
+                        React.createElement('button', { onClick: handlePrevious, className: "p-4 bg-white/65 text-slate-800 hover:bg-white border border-sky-200 rounded-full transition-all disabled:opacity-50 disabled:cursor-not-allowed mobile-tap-area control-button flex items-center justify-center", disabled: currentSection === 0 && currentLine === 0, title: "Précédent" }, React.createElement(SkipBackIcon)),
+                        React.createElement('button', { onClick: handleNext, className: "p-5 bg-red-500 text-white hover:bg-red-600 rounded-full shadow-md shadow-red-500/30 transition-all mobile-tap-area control-button flex items-center justify-center", title: "Suivant" }, React.createElement(SkipForwardIcon)),
                         React.createElement('button', { onClick: () => {
                             setShowPrompter(!showPrompter);
                             saveSettings();
                         }, className: `p-4 rounded-full transition-all mobile-tap-area control-button flex items-center justify-center ${
-                            showPrompter ? 'bg-green-600 hover:bg-green-500 shadow-lg shadow-green-500/50' : 'bg-slate-700 hover:bg-slate-600'
+                            showPrompter ? 'bg-sky-200 text-slate-900 hover:bg-sky-300 shadow-md shadow-sky-300/40' : 'bg-white/65 text-slate-800 hover:bg-white border border-sky-200'
                         }`, title: showPrompter ? "Désactiver le souffleur" : "Activer le souffleur" }, React.createElement(EyeIcon)),
-                        React.createElement('button', { onClick: () => setShowSettings(!showSettings), className: "p-5 bg-slate-700 hover:bg-slate-600 rounded-full transition-all mobile-tap-area control-button flex items-center justify-center", title: "Réglages" }, React.createElement(SettingsIcon)),
+                        React.createElement('button', { onClick: () => setShowSettings(!showSettings), className: "p-5 bg-white/65 text-slate-800 hover:bg-white border border-sky-200 rounded-full transition-all mobile-tap-area control-button flex items-center justify-center", title: "Réglages" }, React.createElement(SettingsIcon)),
                         React.createElement('button', {
                             onClick: toggleBookmark,
                             className: `p-5 rounded-full transition-all mobile-tap-area control-button flex items-center justify-center ${
                                 isBookmarked() 
-                                    ? 'bg-yellow-600 hover:bg-yellow-500' 
-                                    : 'bg-slate-700 hover:bg-slate-600'
+                                    ? 'bg-amber-200 text-slate-900 hover:bg-amber-300'
+                                    : 'bg-white/65 text-slate-800 hover:bg-white border border-sky-200'
                             }`,
                             title: isBookmarked() ? "Retirer le marque-page" : "Ajouter un marque-page"
                         }, isBookmarked() ? React.createElement(BookmarkFilledIcon) : React.createElement(BookmarkIcon)),
@@ -1082,13 +1092,13 @@ if (!isMyRole(line)) {
                             onClick: () => setShowBookmarks(!showBookmarks),
                             className: `p-5 rounded-full transition-all mobile-tap-area control-button flex items-center justify-center ${
                                 showBookmarks 
-                                    ? 'bg-purple-600 hover:bg-purple-500' 
-                                    : 'bg-slate-700 hover:bg-slate-600'
+                                    ? 'bg-blue-200 text-slate-900 hover:bg-blue-300'
+                                    : 'bg-white/65 text-slate-800 hover:bg-white border border-sky-200'
                             }`,
                             title: "Voir les marque-pages"
                         }, React.createElement(ListIcon))
                     ),
-                    showSettings && React.createElement('div', { className: "bg-slate-800/90 backdrop-blur rounded-2xl p-6 mb-6 border border-red-500/20" },
+                    showSettings && React.createElement('div', { className: "bg-white/85 backdrop-blur rounded-2xl p-6 mb-6 border border-sky-300/70 shadow-sm" },
                         React.createElement('h3', { className: "text-xl font-bold mb-4 flex items-center gap-2" }, React.createElement(Volume2Icon), 'Réglages des voix'),
                         React.createElement('div', { className: "space-y-4" },
                             React.createElement('div', null,
@@ -1117,7 +1127,7 @@ if (!isMyRole(line)) {
                                 React.createElement('select', { value: selectedVoices['FEMMES'] || '', onChange: (e) => {
                                     setSelectedVoices({...selectedVoices, 'FEMMES': e.target.value});
                                     saveSettings();
-                                }, className: "w-full p-2 bg-slate-700 rounded border border-slate-600 text-white" },
+                                }, className: "w-full p-2 bg-white/80 rounded border border-sky-300 text-slate-800" },
                                     voices.filter(v => v.lang.startsWith('fr')).map(voice => React.createElement('option', { key: voice.name, value: voice.name }, voice.name))
                                 )
                             ),
@@ -1126,7 +1136,7 @@ if (!isMyRole(line)) {
                                 React.createElement('select', { value: selectedVoices['HOMMES'] || '', onChange: (e) => {
                                     setSelectedVoices({...selectedVoices, 'HOMMES': e.target.value});
                                     saveSettings();
-                                }, className: "w-full p-2 bg-slate-700 rounded border border-slate-600 text-white" },
+                                }, className: "w-full p-2 bg-white/80 rounded border border-sky-300 text-slate-800" },
                                     voices.filter(v => v.lang.startsWith('fr')).map(voice => React.createElement('option', { key: voice.name, value: voice.name }, voice.name))
                                 )
                             ),
@@ -1139,40 +1149,40 @@ if (!isMyRole(line)) {
                             )
                         )
                     ),
-                    showBookmarks && React.createElement('div', { className: "bg-slate-800/90 backdrop-blur rounded-2xl p-6 mb-6 border border-purple-500/20" },
+                    showBookmarks && React.createElement('div', { className: "bg-white/85 backdrop-blur rounded-2xl p-6 mb-6 border border-sky-300/70 shadow-sm" },
                         React.createElement('h3', { className: "text-xl font-bold mb-4 flex items-center gap-2" },
                             React.createElement(BookmarkFilledIcon),
                             `Marque-pages (${Object.keys(bookmarks).length})`
                         ),
                         Object.keys(bookmarks).length === 0 ? 
-                            React.createElement('p', { className: "text-gray-400 text-center py-4" }, 
+                            React.createElement('p', { className: "text-slate-600 text-center py-4" },
                                 'Aucun marque-page. Cliquez sur l\'icône 📌 pour en ajouter.'
                             ) :
                             React.createElement('div', { className: "space-y-3 max-h-80 overflow-y-auto" },
                                 Object.entries(bookmarks).map(([key, bookmark]) => 
                                     React.createElement('div', { 
                                         key: key,
-                                        className: "bg-slate-700/50 rounded-lg p-4 border border-slate-600"
+                                        className: "bg-white/60 rounded-lg p-4 border border-sky-200"
                                     },
                                         React.createElement('div', { className: "flex justify-between items-start mb-2" },
                                             React.createElement('div', null,
                                                 React.createElement('span', { className: `px-2 py-1 rounded text-xs font-semibold ${
-                                                    bookmark.character === 'Le Président' ? 'bg-red-600' : 
-                                                    bookmark.character === 'La jurée Adrienne' ? 'bg-blue-600' : 'bg-green-600'
+                                                    bookmark.character === 'Le Président' ? 'bg-red-200 text-slate-800' :
+                                                    bookmark.character === 'La jurée Adrienne' ? 'bg-blue-200 text-slate-800' : 'bg-sky-200 text-slate-800'
                                                 }` }, bookmark.character),
-                                                React.createElement('span', { className: "text-sm text-gray-400 ml-2" },
+                                                React.createElement('span', { className: "text-sm text-slate-500 ml-2" },
                                                     `Section ${bookmark.section + 1}, Ligne ${bookmark.line + 1}`
                                                 )
                                             ),
                                             React.createElement('button', { 
                                                 onClick: () => removeBookmark(key),
-                                                className: "text-gray-400 hover:text-red-400 text-sm"
+                                                className: "text-slate-500 hover:text-red-700 text-sm"
                                             }, '×')
                                         ),
-                                        React.createElement('p', { className: "text-sm text-gray-300 mb-2" }, bookmark.text),
+                                        React.createElement('p', { className: "text-sm text-slate-700 mb-2" }, bookmark.text),
                                         React.createElement('button', { 
                                             onClick: () => goToBookmark(bookmark.section, bookmark.line), 
-                                            className: "text-xs text-purple-400 hover:text-purple-300"
+                                            className: "text-xs text-blue-700 hover:text-blue-900"
                                         },
                                             'Aller à cette réplique'
                                         )
@@ -1180,13 +1190,13 @@ if (!isMyRole(line)) {
                                 )
                             )
                     ),
-                    React.createElement('div', { className: "bg-slate-800/50 backdrop-blur rounded-lg p-4" },
-                        React.createElement('div', { className: "mb-2 flex justify-between text-sm text-orange-300" },
+                    React.createElement('div', { className: "bg-white/65 backdrop-blur rounded-lg p-4 border border-sky-300/70" },
+                        React.createElement('div', { className: "mb-2 flex justify-between text-sm text-slate-700" },
                             React.createElement('span', null, `Section ${currentSection + 1} / ${sections.length}`),
                             React.createElement('span', null, `Ligne ${currentLine + 1} / ${sections[currentSection].lines.length}`)
                         ),
-                        React.createElement('div', { className: "w-full bg-slate-700 rounded-full h-2" },
-                            React.createElement('div', { className: "bg-red-600 h-2 rounded-full transition-all duration-300", style: { width: `${((currentLine + 1) / sections[currentSection].lines.length) * 100}%` } })
+                        React.createElement('div', { className: "w-full bg-sky-100 rounded-full h-2" },
+                            React.createElement('div', { className: "bg-red-500 h-2 rounded-full transition-all duration-300", style: { width: `${((currentLine + 1) / sections[currentSection].lines.length) * 100}%` } })
                         )
                     )
                 )
