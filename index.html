@@ -1,0 +1,1189 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Le Petit Prince</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            background: linear-gradient(to bottom right, #1a1a2e, #c1121f, #1a1a2e);
+            min-height: 100vh;
+        }
+        
+        /* Exception pour les contrôles mobiles qui doivent pouvoir défiler horizontalement */
+        .mobile-controls {
+            overflow-x: auto !important;
+        }
+        
+        /* Styles pour mobile */
+        @media (max-width: 768px) {
+            .mobile-tap-area {
+                min-height: 40px;
+                min-width: 40px;
+            }
+            
+            .text-display {
+                font-size: 1.1rem;
+                line-height: 1.6;
+            }
+            
+            .mobile-controls {
+                padding: 6px;
+                gap: 4px;
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+                touch-action: pan-x;
+            }
+            
+            .mobile-controls::-webkit-scrollbar {
+                display: none;
+            }
+            
+            .mobile-controls {
+                -ms-overflow-style: none;
+                scrollbar-width: none;
+            }
+            
+            /* Assurer la visibilité des icônes sur mobile */
+            .mobile-controls svg {
+                width: 19px;
+                height: 19px;
+                display: block;
+                flex-shrink: 0;
+            }
+            
+            .control-button {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                min-width: 40px;
+                min-height: 40px;
+            }
+        }
+    </style>
+</head>
+<body class="text-white">
+    <div id="root"></div>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script type="text/babel">
+        const { useState, useEffect, useRef } = React;
+        const RotateCcwIcon = () => (<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polyline points="1 4 1 10 7 10"></polyline><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"></path></svg>);
+        const SkipBackIcon = () => (<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polygon points="19 20 9 12 19 4 19 20"></polygon><line x1="5" y1="19" x2="5" y2="5"></line></svg>);
+        const SkipForwardIcon = () => (<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polygon points="5 4 15 12 5 20 5 4"></polygon><line x1="19" y1="5" x2="19" y2="19"></line></svg>);
+        const ZapIcon = () => (<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>);
+        const SettingsIcon = () => (<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="3"></circle><path d="M12 1v6m0 6v6m-6-6h6m6 0h-6"></path></svg>);
+        const Volume2Icon = () => (<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>);
+        const EyeIcon = () => (<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>);
+        const EyeOffIcon = () => (<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path><line x1="1" y1="1" x2="23" y2="23"></line></svg>);
+        const BookmarkIcon = () => (<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path></svg>);
+        const BookmarkFilledIcon = () => (<svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" strokeWidth="2.5"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path></svg>);
+        const ListIcon = () => (<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line></svg>);
+
+        const normalizeCharacter = (character) => {
+            const normalized = character.replace(/'/g, '’').trim().toLocaleUpperCase('fr-FR');
+            if (/^(?:L’)?AVIATEUR$/.test(normalized)) return 'L’AVIATEUR';
+            if (normalized === 'ROSE') return 'ROSES';
+            if (normalized === 'HOMME D’AFFAIRES A') return 'HOMME D’AFFAIRES';
+            if (normalized === 'LE' || normalized === 'LE PETIT PRINCE') return 'PETIT PRINCE';
+            return normalized;
+        };
+
+        const FemmesRehearsal = () => {
+            const [currentSection, setCurrentSection] = useState(0);
+            const [currentLine, setCurrentLine] = useState(0);
+            const [showSettings, setShowSettings] = useState(false);
+            const [voices, setVoices] = useState([]);
+            const [selectedVoices, setSelectedVoices] = useState({});
+            const [speechRate, setSpeechRate] = useState(1.15);
+            const [commaPause, setCommaPause] = useState(0.25);
+            const [sentencePause, setSentencePause] = useState(0.75);
+            const [revealedLine, setRevealedLine] = useState(false);
+            const [isPlaying, setIsPlaying] = useState(false);
+            const [turboMode, setTurboMode] = useState(false);
+            const [showPrompter, setShowPrompter] = useState(false);
+            const [prompterDelay, setPrompterDelay] = useState(3); // secondes avant révélation (1-9)
+            const [prompterTimer, setPrompterTimer] = useState(3); // compteur actuel
+            const [prompterState, setPrompterState] = useState('hidden'); // 'hidden', 'hint', 'full', 'audio'
+            const [showBookmarks, setShowBookmarks] = useState(false);
+            const [bookmarks, setBookmarks] = useState({});
+            const [touchStartX, setTouchStartX] = useState(null);
+            const [showSwipeHint, setShowSwipeHint] = useState(false);
+            const utteranceRef = useRef(null);
+            const rootRef = useRef(null);
+            const [presidentSpeechState, setPresidentSpeechState] = useState('idle'); // 'idle', 'playing', 'paused'
+            const presidentChunksRef = useRef(null);
+            const presidentChunkIndexRef = useRef(0);
+            const presidentTimeoutRef = useRef(null);
+            const presidentSpeechOptsRef = useRef(null);
+            const lastTapTimeRef = useRef(0);
+            const [selectedRole, setSelectedRole] = useState('Petit Prince');
+
+            // Charger les paramètres sauvegardés
+            useEffect(() => {
+                const savedSettings = localStorage.getItem('femmesTRAE_settings');
+                if (savedSettings) {
+                    const settings = JSON.parse(savedSettings);
+                    setSpeechRate(settings.speechRate || 1.15);
+                    setCommaPause(settings.commaPause || 0.25);
+                    setSentencePause(settings.sentencePause || 0.75);
+                    setSelectedVoices(settings.selectedVoices || {});
+                    setShowPrompter(settings.showPrompter || false);
+                    setPrompterDelay(settings.prompterDelay || 3);
+                    if (settings.selectedRole) setSelectedRole(normalizeCharacter(settings.selectedRole));
+                }
+
+                // Charger les marque-pages sauvegardés
+                const savedBookmarks = localStorage.getItem('femmesTRAE_bookmarks');
+                if (savedBookmarks) {
+                    setBookmarks(JSON.parse(savedBookmarks));
+                }
+
+                // Charger les paramètres du souffleur
+                const savedPrompter = localStorage.getItem('femmesTRAE_prompter');
+                if (savedPrompter) {
+                    const prompterSettings = JSON.parse(savedPrompter);
+                    setPrompterTimer(prompterSettings.timer || 3);
+                }
+
+                // Vérifier si l'indicateur de swipe a déjà été vu
+                const swipeHintSeen = localStorage.getItem('femmesTRAE_swipeHintSeen');
+                if (!swipeHintSeen) {
+                    setShowSwipeHint(true);
+                }
+            }, []);
+
+            // Sauvegarder les paramètres
+            const saveSettings = () => {
+                const settings = {
+                    speechRate,
+                    commaPause,
+                    sentencePause,
+                    selectedVoices,
+                    showPrompter,
+                    prompterDelay,
+                    selectedRole
+                };
+                localStorage.setItem('femmesTRAE_settings', JSON.stringify(settings));
+            };
+
+            // Sauvegarder les marque-pages
+            const saveBookmarks = () => {
+                localStorage.setItem('femmesTRAE_bookmarks', JSON.stringify(bookmarks));
+            };
+
+            // Sauvegarder les paramètres du souffleur
+            const savePrompterSettings = () => {
+                const prompterSettings = {
+                    timer: prompterTimer
+                };
+                localStorage.setItem('femmesTRAE_prompter', JSON.stringify(prompterSettings));
+            };
+
+            const initialSections = [
+                {
+                    title: "Scène 1 · Histoires vraies",
+                    lines: [
+                        { character: "Enfant", text: "Histoires vraies de la nature...", gender: "male", isPresident: false },
+                        { character: "L’aviateur", text: "Quand j’avais six ans, j’ai vu, une fois, une magnifique image dans un livre sur la forêt vierge qui s’appelait Histoires vécues. Ça représentait un serpent boa qui avalait un fauve.", gender: "male", isPresident: false },
+                        { character: "Enfant", text: "Les boas avalent leur proie toute entière, sans la mâcher. Ensuite, ils ne peuvent plus bouger et ils dorment pendant les six mois de leur digestion.", gender: "male", isPresident: false },
+                        { character: "L’aviateur", text: "J’ai longuement médité sur les aventures de la jungle. Et à mon tour, j’ai pu dessiner mon premier dessin.", gender: "male", isPresident: false },
+                        { character: "Enfant", text: "Monsieur... Excuse-moi. Monsieur ! Regarde, tu as peur de mon dessin ?", gender: "male", isPresident: false },
+                        { character: "L’aviateur", text: "Peur ? Pourquoi devrais-je avoir peur d’un chapeau ?", gender: "male", isPresident: false },
+                        { character: "Enfant", text: "Monsieur, regarde ça !", gender: "male", isPresident: false },
+                        { character: "L’aviateur", text: "Un conseil. Laisse de côté tes dessins de boas ouverts ou fermés. Intéresse-toi plutôt à la géographie, à l’histoire, au calcul et à la grammaire.", gender: "male", isPresident: false },
+                        { character: "Enfant", text: "Il observe de nouveau son dessin, ferme son livre et quitte la scène déçu.", gender: "male", isPresident: false },
+                        { character: "L’aviateur", text: "L’insuccès de mon dessin numéro un et de mon dessin numéro deux m’avait découragé. Les grandes personnes ne comprennent jamais rien toutes seules, et c’est fatiguant pour les enfants de toujours leur donner des explications.", gender: "male", isPresident: false },
+                        { character: "Voix", text: "C’est un chapeau !", gender: "male", isPresident: false }
+                    ]
+                },
+                {
+                    title: "Scène 2 · Le mouton",
+                    lines: [
+                        { character: "Petit Prince", text: "S’il vous plaît, dessine-moi un mouton.", gender: "male", isPresident: false },
+                        { character: "L’aviateur", text: "Mais je ne sais pas dessiner !", gender: "male", isPresident: false },
+                        { character: "Petit Prince", text: "Ça ne fait rien. Dessine-moi un mouton.", gender: "male", isPresident: false },
+                        { character: "L’aviateur", text: "Voilà. Un premier mouton. Celui-là est très malade.", gender: "male", isPresident: false },
+                        { character: "Petit Prince", text: "Non ! Celui-là est très malade. Fais-en un autre !", gender: "male", isPresident: false },
+                        { character: "L’aviateur", text: "Très bien. En voici un autre.", gender: "male", isPresident: false },
+                        { character: "Petit Prince", text: "Ce n’est pas un mouton. C’est un bélier. Il a des cornes.", gender: "male", isPresident: false },
+                        { character: "L’aviateur", text: "Celui-ci est trop vieux. Je veux un mouton qui puisse vivre longtemps.", gender: "male", isPresident: false },
+                        { character: "Petit Prince", text: "Celui-là est trop vieux. Je veux un mouton qui peut vivre longtemps.", gender: "male", isPresident: false },
+                        { character: "L’aviateur", text: "Ça, c’est la caisse ! Le mouton que tu veux est dedans !", gender: "male", isPresident: false },
+                        { character: "Petit Prince", text: "C’est tout à fait comme je voulais ! Pensez-vous que ce mouton aura besoin de beaucoup d’herbe ?", gender: "male", isPresident: false },
+                        { character: "L’aviateur", text: "Pourquoi ?", gender: "male", isPresident: false },
+                        { character: "Petit Prince", text: "Parce que chez moi, c’est tout petit.", gender: "male", isPresident: false },
+                        { character: "L’aviateur", text: "Ça suffira sûrement. Je t’ai donné un tout petit mouton.", gender: "male", isPresident: false },
+                        { character: "Petit Prince", text: "Pas si petit que ça. Tiens ! Il s’est endormi.", gender: "male", isPresident: false }
+                    ]
+                },
+                {
+                    title: "Scène 3 · D’où viens-tu ?",
+                    lines: [
+                        { character: "Petit Prince", text: "Qu’est-ce que c’est que cette chose-là ?", gender: "male", isPresident: false },
+                        { character: "L’aviateur", text: "Ce n’est pas une chose. Ça vole. C’est un avion. C’est mon avion.", gender: "male", isPresident: false },
+                        { character: "Petit Prince", text: "Comment ? Tu es tombé du ciel !", gender: "male", isPresident: false },
+                        { character: "L’aviateur", text: "Oui.", gender: "male", isPresident: false },
+                        { character: "Petit Prince", text: "Ah ! C’est drôle ! Ah ! Ah ! Ah !", gender: "male", isPresident: false },
+                        { character: "Petit Prince", text: "Alors toi aussi tu viens du ciel ! De quelle planète es-tu ?", gender: "male", isPresident: false },
+                        { character: "L’aviateur", text: "Tu viens donc d’une autre planète ?", gender: "male", isPresident: false },
+                        { character: "Petit Prince", text: "Bien sûr. Avec ça, tu ne peux pas venir de bien loin !", gender: "male", isPresident: false },
+                        { character: "L’aviateur", text: "D’où viens-tu, mon petit bonhomme ? Où est-ce « chez toi » ? Où veux-tu emporter mon mouton ?", gender: "male", isPresident: false },
+                        { character: "Petit Prince", text: "Ce qui est bien, c’est que la caisse que tu m’as donnée lui servira de maison pour la nuit.", gender: "male", isPresident: false },
+                        { character: "L’aviateur", text: "Bien sûr. Et si tu es gentil, je te donnerai aussi une corde pour l’attacher pendant le jour. Et un piquet.", gender: "male", isPresident: false },
+                        { character: "Petit Prince", text: "L’attacher ? Quelle drôle d’idée !", gender: "male", isPresident: false },
+                        { character: "L’aviateur", text: "Mais si tu ne l’attaches pas, il ira n’importe où et il se perdra.", gender: "male", isPresident: false },
+                        { character: "Petit Prince", text: "Mais où veux-tu qu’il aille ?", gender: "male", isPresident: false },
+                        { character: "L’aviateur", text: "N’importe où. Droit devant lui.", gender: "male", isPresident: false },
+                        { character: "Petit Prince", text: "Ça ne fait rien, c’est tellement petit chez moi. Tout droit, on ne peut pas aller bien loin.", gender: "male", isPresident: false }
+                    ]
+                },
+                {
+                    title: "Scène 4 · L’astéroïde B 612",
+                    lines: [
+                        { character: "L’aviateur", text: "J’avais ainsi appris que sa planète d’origine n’était à peine plus grande qu’une maison.", gender: "male", isPresident: false },
+                        { character: "L’aviateur", text: "La planète d’où venait le Petit Prince est l’astéroïde B 612.", gender: "male", isPresident: false },
+                        { character: "L’aviateur", text: "Cet astéroïde n’a été repéré qu’une seule fois dans le télescope par un astronome turc.", gender: "male", isPresident: false },
+                        { character: "L’aviateur", text: "Les grandes personnes aiment les chiffres. Si vous leur parlez d’un nouvel ami, elles vous demandent son âge, le nombre de frères et de sœurs, et combien gagne son père.", gender: "male", isPresident: false },
+                        { character: "L’aviateur", text: "Donc, si vous deviez donner aux adultes la preuve que le Petit Prince existait, le simple fait qu’il riait et voulait un mouton ne suffirait pas. Il faut dire: «La planète d’où il vient est l’astéroïde B 612.»", gender: "male", isPresident: false },
+                        { character: "L’aviateur", text: "Les enfants doivent être très indulgents envers les grandes personnes.", gender: "male", isPresident: false }
+                    ]
+                },
+                {
+                    title: "Scène 5 · Les baobabs",
+                    lines: [
+                        { character: "Petit Prince", text: "Est-il vrai que les moutons mangent des arbustes ?", gender: "male", isPresident: false },
+                        { character: "L’aviateur", text: "Oui, c’est vrai.", gender: "male", isPresident: false },
+                        { character: "Petit Prince", text: "Ah, je suis content. Alors ils mangent aussi des baobabs ?", gender: "male", isPresident: false },
+                        { character: "L’aviateur", text: "Mais les baobabs ne sont pas des arbustes. Ce sont des arbres aussi grands que les églises.", gender: "male", isPresident: false },
+                        { character: "Petit Prince", text: "Mais les baobabs avant de grandir, ça commence par être petits.", gender: "male", isPresident: false },
+                        { character: "L’aviateur", text: "C’est exact. Mais pourquoi veux-tu que les moutons mangent les petits baobabs ?", gender: "male", isPresident: false },
+                        { character: "Petit Prince", text: "Eh bien ! Ma planète est trop petite et infestée de mauvaises plantes qui la feraient éclater.", gender: "male", isPresident: false },
+                        { character: "L’aviateur", text: "C’est vrai.", gender: "male", isPresident: false },
+                        { character: "Petit Prince", text: "C’est une question de discipline. C’est un travail très ennuyeux, mais facile.", gender: "male", isPresident: false }
+                    ]
+                },
+                {
+                    title: "Scène 6 · Les couchers de soleil",
+                    lines: [
+                        { character: "Petit Prince", text: "J’aime bien les couchers de soleil. Allons voir un coucher de soleil ?", gender: "male", isPresident: false },
+                        { character: "L’aviateur", text: "Il faut attendre. Que le soleil se couche.", gender: "male", isPresident: false },
+                        { character: "Petit Prince", text: "Je me crois toujours chez moi.", gender: "male", isPresident: false },
+                        { character: "Petit Prince", text: "Un jour, j’ai vu le soleil se coucher quarante-trois fois. Quand on est tellement triste, on aime les couchers de soleil.", gender: "male", isPresident: false },
+                        { character: "L’aviateur", text: "Alors ce jour-là, tu étais donc tellement triste ?", gender: "male", isPresident: false }
+                    ]
+                },
+                {
+                    title: "Scène 7 · Les épines",
+                    lines: [
+                        { character: "Petit Prince", text: "Un mouton, s’il mange les arbustes, mange-t-il aussi les fleurs ?", gender: "male", isPresident: false },
+                        { character: "L’aviateur", text: "Un mouton mange tout ce qu’il rencontre. Même les fleurs qui ont des épines.", gender: "male", isPresident: false },
+                        { character: "Petit Prince", text: "Mais alors à quoi servent les épines ?", gender: "male", isPresident: false },
+                        { character: "L’aviateur", text: "Les épines, ça ne sert à rien. C’est inutile, c’est de la pure méchanceté de la part des fleurs.", gender: "male", isPresident: false },
+                        { character: "Petit Prince", text: "Je ne te crois pas. Les fleurs sont faibles. Elles sont naïves. Elles se rassurent comme elles le peuvent. Elles se croient terribles avec leurs épines.", gender: "male", isPresident: false },
+                        { character: "L’aviateur", text: "Je n’ai répondu n’importe quoi. Je m’occupe de choses sérieuses !", gender: "male", isPresident: false },
+                        { character: "Petit Prince", text: "Tu parles comme les grandes personnes !", gender: "male", isPresident: false },
+                        { character: "Petit Prince", text: "Il y a des milliers d’années que les fleurs font des épines. Pendant des milliers d’années, les moutons ont mangé des fleurs. N’est-ce pas une chose sérieuse d’essayer de comprendre pourquoi les fleurs travaillent si dur pour faire des épines qui sont inutiles ?", gender: "male", isPresident: false }
+                    ]
+                },
+                {
+                    title: "Scène 8 · La fleur",
+                    lines: [
+                        { character: "L’aviateur", text: "J’ai appris bien vite à mieux connaître cette fleur. Elle avait surgi un jour, d’une graine qui venait d’on ne sait où.", gender: "male", isPresident: false },
+                        { character: "Fleur", text: "Ah ! Je me réveille à peine. Je vous demande pardon... Je suis encore toute décoiffée.", gender: "female", isPresident: false },
+                        { character: "Petit Prince", text: "Comme tu es belle !", gender: "male", isPresident: false },
+                        { character: "Fleur", text: "N’est-ce pas ? Et je suis née avec le soleil. C’est l’heure, je crois, du petit déjeuner. Voulez-vous penser à moi ?", gender: "female", isPresident: false },
+                        { character: "Fleur", text: "Regarde mes épines ! Les tigres peuvent venir, avec leurs griffes !", gender: "female", isPresident: false },
+                        { character: "Petit Prince", text: "Il n’y a pas de tigres sur ma planète ! Et puis les tigres ne mangent pas d’herbe.", gender: "male", isPresident: false },
+                        { character: "Fleur", text: "Je ne suis pas une herbe !", gender: "female", isPresident: false },
+                        { character: "Fleur", text: "Je n’ai pas peur des tigres, mais je suis horrifiée par les courants d’air... N’auriez-vous pas un paravent ?", gender: "female", isPresident: false },
+                        { character: "Petit Prince", text: "Horreur des courants d’air ? C’est grave pour une plante. Vous êtes très compliquée.", gender: "male", isPresident: false },
+                        { character: "Fleur", text: "Le soir, vous m’abriterez sous une cloche de verre. Il fait très froid chez vous...", gender: "female", isPresident: false },
+                        { character: "Petit Prince", text: "Je n’aurais pas dû t’écouter. Il suffit de regarder les fleurs et de les respirer. La mienne embaumait ma planète.", gender: "male", isPresident: false },
+                        { character: "Fleur", text: "Je ne t’ai jamais menti. J’étais simplement timide, et j’avais peur de te décevoir.", gender: "female", isPresident: false }
+                    ]
+                },
+                {
+                    title: "Scène 9 · Adieu",
+                    lines: [
+                        { character: "Petit Prince", text: "Adieu !", gender: "male", isPresident: false },
+                        { character: "Fleur", text: "Ne répond pas. Ne part pas comme ça.", gender: "female", isPresident: false },
+                        { character: "Petit Prince", text: "Mais le vent...", gender: "male", isPresident: false },
+                        { character: "Fleur", text: "Je ne suis pas si enrhumée que ça. L’air frais de la nuit me fera du bien.", gender: "female", isPresident: false },
+                        { character: "Petit Prince", text: "Ce qui est important, c’est invisible pour les yeux. On ne voit bien qu’avec le cœur.", gender: "male", isPresident: false },
+                        { character: "L’aviateur", text: "Je n’ai jamais raconté cette histoire. Je sais qu’il est parti, mais je ne peux pas oublier son sourire.", gender: "male", isPresident: false }
+                    ]
+                }
+            ];
+
+            const [sections, setSections] = useState(initialSections);
+            const [scriptLoadError, setScriptLoadError] = useState(false);
+
+            const loadFullScript = (source) => {
+                const headers = [...source.matchAll(/^#\s*SCÈNE\s+(.+)$/gim)];
+                if (headers.length !== 26) {
+                    setScriptLoadError(true);
+                    return;
+                }
+
+                const parsedSections = headers.map((header, index) => {
+                    const bodyStart = header.index + header[0].length;
+                    const bodyEnd = headers[index + 1]?.index ?? source.length;
+                    const sourceLines = source.slice(bodyStart, bodyEnd).split(/\r?\n/);
+                    const lines = [];
+                    let pendingText = '';
+                    const speakers = [
+                        'LE PETIT PRINCE', 'L’AVIATEUR', "L'AVIATEUR", 'ENFANT', 'FLEUR', 'VOIX',
+                        'MAIN DROITE', 'MAIN GAUCHE', 'ROI', 'VANITEUX', 'IVROGNE',
+                        "HOMME D'AFFAIRES", 'L’ALLUMEUR DE RÉVERBÈRES',
+                        'RÉVERBÈRES', 'GÉOGRAPHE', 'SERPENT', 'ÉCHO',
+                        'ROSE', 'ROSES', 'RENARD', 'AIGUILLEUR', 'MARCHANDS', 'MARCHAND 1',
+                        'MARCHAND 2', 'AVIATEUR', 'LE'
+                    ].sort((a, b) => b.length - a.length);
+                    const escapePattern = (value) => value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+                    const speakerPattern = new RegExp(`^(${speakers.map(escapePattern).join('|')})(?:\\s+(.+))?$`);
+
+                    sourceLines.forEach((rawLine) => {
+                        const text = rawLine.trim();
+                        if (!text) return;
+
+                        const match = text.match(speakerPattern);
+                        if (match) {
+                            const character = normalizeCharacter(match[1]);
+                            const gender = /FLEUR|ROSE|PRINCESSE|REINE/i.test(character) ? 'female' : 'male';
+                            const dialogue = [pendingText, (match[2] || '').replace(/^\([^)]*\)\s*/, '').trim()]
+                                .filter(Boolean).join(' ');
+                            pendingText = '';
+                            if (dialogue) lines.push({ character, text: dialogue, gender, isPresident: false });
+                        } else if (lines.length) {
+                            lines[lines.length - 1].text += ` ${text}`;
+                        } else {
+                            pendingText = `${pendingText} ${text}`.trim();
+                        }
+                    });
+
+                    return { title: `Scène ${index + 1}`, lines };
+                });
+
+                if (parsedSections.slice(9).some(section => section.lines.length === 0)) {
+                    setScriptLoadError(true);
+                    return;
+                }
+
+                setSections([...initialSections, ...parsedSections.slice(9)]);
+                setScriptLoadError(false);
+            };
+
+            useEffect(() => {
+                fetch('./LEPETITPRINCE_Theatre.txt')
+                    .then(response => {
+                        if (!response.ok) throw new Error('Script unavailable');
+                        return response.text();
+                    })
+                    .then(loadFullScript)
+                    .catch(() => setScriptLoadError(true));
+            }, []);
+
+            useEffect(() => {
+
+                const loadVoices = () => {
+                    const availableVoices = window.speechSynthesis.getVoices();
+                    setVoices(availableVoices);
+                    const frenchVoices = availableVoices.filter(v => v.lang.startsWith('fr'));
+                    const findBestVoice = (gender) => {
+                        const premium = frenchVoices.find(v => 
+                            (v.name.includes('Google') || v.name.includes('Microsoft') || v.name.includes('Premium')) &&
+                            (gender === 'male' ? v.name.includes('Male') || v.name.includes('Thomas') || v.name.includes('Henri') : 
+                             v.name.includes('Female') || v.name.includes('Amélie') || v.name.includes('Marie'))
+                        );
+                        return premium || frenchVoices.find(v => gender === 'male' ? !v.name.includes('Female') : v.name.includes('Female')) || frenchVoices[0];
+                    };
+                    if (frenchVoices.length > 0) {
+                        setSelectedVoices({
+                            'FEMMES': findBestVoice('female')?.name || frenchVoices[0]?.name,
+                            'HOMMES': findBestVoice('male')?.name || frenchVoices[0]?.name
+                        });
+                    }
+                };
+                loadVoices();
+                window.speechSynthesis.onvoiceschanged = loadVoices;
+            }, []);
+
+            // Charger les marque-pages sauvegardés
+            useEffect(() => {
+                const savedBookmarks = localStorage.getItem('femmesBookmarks');
+                if (savedBookmarks) {
+                    setBookmarks(JSON.parse(savedBookmarks));
+                }
+            }, []);
+
+            const speakPresidentFromChunk = (chunks, startIndex, opts, onFinished) => {
+                const { voiceName, pitch = 1, lang = 'fr-FR', rate = speechRate } = opts;
+                let i = startIndex;
+                const commaMs = commaPause * 1000;
+                const sentenceMs = sentencePause * 1000;
+
+                const next = () => {
+                    if (i >= chunks.length) {
+                        presidentChunkIndexRef.current = 0;
+                        if (typeof onFinished === 'function') onFinished();
+                        return;
+                    }
+                    presidentChunkIndexRef.current = i;
+                    const raw = chunks[i];
+                    const part = raw.trim();
+                    i += 1;
+                    if (!part) { next(); return; }
+
+                    const lastChar = raw.slice(-1);
+                    let pause = 100;
+                    if (lastChar === ',' || lastChar === ';' || lastChar === ':') pause = commaMs;
+                    else if (lastChar === '.' || lastChar === '!' || lastChar === '?') pause = sentenceMs;
+
+                    const u = new SpeechSynthesisUtterance(part);
+                    u.lang = lang;
+                    u.rate = rate;
+                    u.pitch = pitch;
+                    if (voiceName) {
+                        const v = voices.find(vv => vv.name === voiceName);
+                        if (v) u.voice = v;
+                    }
+                    utteranceRef.current = u;
+                    u.onend = () => {
+                        presidentChunkIndexRef.current = i;
+                        presidentTimeoutRef.current = setTimeout(next, pause);
+                    };
+                    window.speechSynthesis.speak(u);
+                };
+                next();
+            };
+
+            const speakPresidentLine = (text) => {
+                if (presidentSpeechState === 'playing') {
+                    window.speechSynthesis.cancel();
+                    if (presidentTimeoutRef.current) {
+                        clearTimeout(presidentTimeoutRef.current);
+                        presidentTimeoutRef.current = null;
+                    }
+                    setPresidentSpeechState('paused');
+                    return;
+                }
+                if (presidentSpeechState === 'paused') {
+                    setPresidentSpeechState('playing');
+                    speakPresidentFromChunk(
+                        presidentChunksRef.current,
+                        presidentChunkIndexRef.current,
+                        presidentSpeechOptsRef.current,
+                        () => setPresidentSpeechState('idle')
+                    );
+                    return;
+                }
+                // Démarrage
+                const roleGender = sections.flatMap(s => s.lines).find(l => normalizeCharacter(l.character) === selectedRole)?.gender || 'male';
+                const voiceKey = roleGender === 'female' ? 'FEMMES' : 'HOMMES';
+                const opts = { voiceName: selectedVoices[voiceKey], pitch: roleGender === 'female' ? 1.1 : 0.75, rate: speechRate };
+                const cleanText = text.replace(/\([^()]*\)/g, '').replace(/\s+/g, ' ').trim();
+                if (!cleanText) return;
+                const chunks = cleanText.match(/[^,;.!?:]+[.,;!?:]?/g) || [cleanText];
+                presidentChunksRef.current = chunks;
+                presidentChunkIndexRef.current = 0;
+                presidentSpeechOptsRef.current = opts;
+                setPresidentSpeechState('playing');
+                speakPresidentFromChunk(chunks, 0, opts, () => setPresidentSpeechState('idle'));
+            };
+
+            const handleTextTap = (text) => {
+                const now = Date.now();
+                const timeSinceLastTap = now - lastTapTimeRef.current;
+                lastTapTimeRef.current = now;
+
+                if (timeSinceLastTap < 300) {
+                    // Double-tap : reset au début de la réplique, texte reste visible
+                    window.speechSynthesis.cancel();
+                    if (presidentTimeoutRef.current) {
+                        clearTimeout(presidentTimeoutRef.current);
+                        presidentTimeoutRef.current = null;
+                    }
+                    // Reconstruire les chunks si nécessaire (cas idle sans lecture précédente)
+                    if (!presidentChunksRef.current) {
+                        const roleGender = sections.flatMap(s => s.lines).find(l => normalizeCharacter(l.character) === selectedRole)?.gender || 'male';
+                        const voiceKey = roleGender === 'female' ? 'FEMMES' : 'HOMMES';
+                        const opts = { voiceName: selectedVoices[voiceKey], pitch: roleGender === 'female' ? 1.1 : 0.75, rate: speechRate };
+                        const cleanText = text.replace(/\([^()]*\)/g, '').replace(/\s+/g, ' ').trim();
+                        if (!cleanText) return;
+                        const chunks = cleanText.match(/[^,;.!?:]+[.,;!?:]?/g) || [cleanText];
+                        presidentChunksRef.current = chunks;
+                        presidentSpeechOptsRef.current = opts;
+                    }
+                    presidentChunkIndexRef.current = 0;
+                    setPresidentSpeechState('paused');
+                    return;
+                }
+
+                // Simple tap : comportement normal (idle→play, playing→pause, paused→reprend)
+                speakPresidentLine(text);
+            };
+
+            // Speak text while inserting pauses based on punctuation.
+            // Comma/semicolon -> commaPause seconds, period/!/? -> sentencePause seconds
+            // Fonctions pour les marque-pages
+            const toggleBookmark = () => {
+                const key = `${currentSection}-${currentLine}`;
+                const newBookmarks = { ...bookmarks };
+                
+                if (newBookmarks[key]) {
+                    delete newBookmarks[key];
+                } else {
+                    const currentLineData = sections[currentSection].lines[currentLine];
+                    newBookmarks[key] = {
+                        section: currentSection,
+                        line: currentLine,
+                        character: currentLineData.character,
+                        text: currentLineData.text.substring(0, 50) + (currentLineData.text.length > 50 ? '...' : ''),
+                        date: new Date().toISOString(),
+                        category: 'À travailler' // Par défaut
+                    };
+                }
+                
+                setBookmarks(newBookmarks);
+                localStorage.setItem('femmesTRAE_bookmarks', JSON.stringify(newBookmarks));
+            };
+
+            // Vérifier si la réplique actuelle est marquée
+            const isBookmarked = () => {
+                const key = `${currentSection}-${currentLine}`;
+                return !!bookmarks[key];
+            };
+
+            // Aller à un marque-page spécifique
+            const goToBookmark = (section, line) => {
+                setCurrentSection(section);
+                setCurrentLine(line);
+                setIsPlaying(false);
+                setRevealedLine(false);
+                setShowBookmarks(false);
+            };
+
+            // Supprimer un marque-page
+            const removeBookmark = (key) => {
+                const newBookmarks = { ...bookmarks };
+                delete newBookmarks[key];
+                setBookmarks(newBookmarks);
+                localStorage.setItem('femmesTRAE_bookmarks', JSON.stringify(newBookmarks));
+            };
+
+            const speakWithPunctuationPauses = (text, opts = {}, onFinished) => {
+                const { voiceName, pitch = 1, lang = 'fr-FR', rate = speechRate, commaPause: optComma, sentencePause: optSentence } = opts;
+                window.speechSynthesis.cancel();
+
+                // Supprimer le texte entre parenthèses (didascalies) - gère les parenthèses imbriquées
+                const textWithoutParentheses = text.replace(/\([^()]*\)/g, '').replace(/\s+/g, ' ').trim();
+                
+                // Si tout le texte était entre parenthèses, ne rien lire
+                if (!textWithoutParentheses) {
+                    if (typeof onFinished === 'function') onFinished();
+                    return;
+                }
+                
+                const parts = textWithoutParentheses.match(/[^,;.!?:]+[.,;!?:]?/g) || [textWithoutParentheses];
+                let i = 0;
+
+                const commaMs = (optComma !== undefined ? optComma : commaPause) * 1000;
+                const sentenceMs = (optSentence !== undefined ? optSentence : sentencePause) * 1000;
+
+                const next = () => {
+                    if (i >= parts.length) {
+                        if (typeof onFinished === 'function') onFinished();
+                        return;
+                    }
+
+                    const raw = parts[i];
+                    const part = raw.trim();
+                    i += 1;
+
+                    if (!part) return next();
+
+                    const lastChar = part.slice(-1);
+                    let pause = 100; // default short gap
+
+                    if (lastChar === ',' || lastChar === ';' || lastChar === ':') {
+                        pause = commaMs;
+                    } else if (lastChar === '.' || lastChar === '!' || lastChar === '?') {
+                        pause = sentenceMs;
+                    }
+
+                    const u = new SpeechSynthesisUtterance(part);
+                    u.lang = lang;
+                    u.rate = rate;
+                    u.pitch = pitch;
+                    if (voiceName) {
+                        const v = voices.find(vv => vv.name === voiceName);
+                        if (v) u.voice = v;
+                    }
+
+                    utteranceRef.current = u;
+                    u.onend = () => setTimeout(next, pause);
+                    window.speechSynthesis.speak(u);
+                };
+
+                next();
+            };
+
+            // Retourne les deux dernières phrases non-vides d'un texte (sans didascalies)
+            const getLastSentence = (text) => {
+                const clean = text.replace(/\([^()]*\)/g, '').replace(/\s+/g, ' ').trim();
+                const sentences = clean.split(/(?<=[.!?])\s+/).filter(s => s.trim());
+                if (sentences.length <= 2) return clean;
+                return sentences.slice(-2).join(' ');
+            };
+
+            const allRoles = [...new Set(sections.flatMap(s => s.lines.map(l => normalizeCharacter(l.character))))];
+            const isMyRole = (line) => normalizeCharacter(line.character) === selectedRole;
+
+            // Réinitialiser le TTS quand on change de rôle
+            useEffect(() => {
+                setPresidentSpeechState('idle');
+                if (presidentTimeoutRef.current) { clearTimeout(presidentTimeoutRef.current); presidentTimeoutRef.current = null; }
+                window.speechSynthesis.cancel();
+                setRevealedLine(false);
+                setPrompterState('hidden');
+            }, [selectedRole]);
+
+            // Trouve l'index de la ligne qui précède la prochaine réplique du rôle sélectionné
+            // à partir de fromLine (exclu) dans la section donnée.
+            // Retourne null si aucune réplique du rôle sélectionné n'est trouvée après.
+            const findCueLineIndex = (sectionIdx, fromLine) => {
+                const lines = sections[sectionIdx].lines;
+                for (let i = fromLine + 1; i < lines.length; i++) {
+                    if (isMyRole(lines[i])) return i - 1; // ligne juste avant
+                }
+                return null;
+            };
+
+            const speak = (text, gender, isCueLine = false) => {
+                const voiceKey = gender === 'female' ? 'FEMMES' : 'HOMMES';
+                const voiceName = selectedVoices[voiceKey];
+                const pitch = gender === 'female' ? 1.1 : 0.75;
+                const textToSpeak = (turboMode && isCueLine) ? getLastSentence(text) : text;
+                
+                speakWithPunctuationPauses(textToSpeak, { voiceName, pitch, rate: speechRate }, () => {
+                    const totalLines = sections[currentSection].lines.length;
+                    const textLength = textToSpeak.length;
+                    const basePause = 800;
+                    const lengthBasedPause = Math.min(textLength * 20, 2000);
+                    const totalPause = basePause + lengthBasedPause;
+                    const isTurbo = turboMode;
+
+                    if (isTurbo && isCueLine) {
+                        // Cue line lue : avancer d'une ligne ou changer de section
+                        if (currentLine + 1 < totalLines) {
+                            setTimeout(() => setCurrentLine(prev => prev + 1), 300);
+                        } else if (currentSection < sections.length - 1) {
+                            setTimeout(() => { setCurrentSection(prev => prev + 1); setCurrentLine(0); }, 400);
+                        } else {
+                            setIsPlaying(false);
+                        }
+                        return;
+                    }
+
+                    if (isTurbo) {
+                        // Sauter à la prochaine cue line
+                        const cueIdx = findCueLineIndex(currentSection, currentLine);
+                        if (cueIdx !== null) {
+                            setTimeout(() => setCurrentLine(cueIdx), 300);
+                            return;
+                        } else if (currentSection < sections.length - 1) {
+                            const nextCueIdx = findCueLineIndex(currentSection + 1, -1);
+                            if (nextCueIdx !== null && nextCueIdx >= 0) {
+                                setTimeout(() => { setCurrentSection(prev => prev + 1); setCurrentLine(nextCueIdx); }, 400);
+                            } else {
+                                setTimeout(() => { setCurrentSection(prev => prev + 1); setCurrentLine(0); }, 400);
+                            }
+                            return;
+                        } else {
+                            setIsPlaying(false);
+                            return;
+                        }
+                    }
+
+                    if (currentLine < totalLines - 1) {
+                        setTimeout(() => setCurrentLine(prev => prev + 1), totalPause);
+                    } else if (currentSection < sections.length - 1) {
+                        setTimeout(() => { setCurrentSection(prev => prev + 1); setCurrentLine(0); }, totalPause + 400);
+                    } else {
+                        setIsPlaying(false);
+                    }
+                });
+            };
+
+            // Générer le texte selon l'état du souffleur
+            const getPrompterText = (text) => {
+                if (!showPrompter || prompterState === 'hidden') {
+                    // Utiliser des points de suspension au lieu de underscores
+                    return '...';
+                }
+                
+                if (prompterState === 'hint') {
+                    // Afficher les sept premiers mots + le reste masqué
+                    const words = text.split(' ');
+                    if (words.length <= 7) return text;
+                    return words.slice(0, 7).join(' ') + ' ...';
+                }
+                
+                // 'full' ou 'audio' : afficher le texte complet
+                return text;
+            };
+
+            // Gestion des gestes tactiles
+            const handleTouchStart = (e) => {
+                setTouchStartX({ x: e.touches[0].clientX, y: e.touches[0].clientY });
+            };
+
+            const handleTouchEnd = (e) => {
+                if (touchStartX === null) return;
+                
+                const touchEndX = e.changedTouches[0].clientX;
+                const touchEndY = e.changedTouches[0].clientY;
+                const diffX = touchStartX.x - touchEndX;
+                const diffY = touchStartX.y - touchEndY;
+                
+                // Swipe valide : > 80px horizontal ET plus horizontal que vertical (ratio 2:1)
+                if (Math.abs(diffX) > 80 && Math.abs(diffX) > Math.abs(diffY) * 2) {
+                    if (diffX > 0) {
+                        // Swipe gauche -> suivant
+                        handleNext();
+                    } else {
+                        // Swipe droite -> précédent
+                        handlePrevious();
+                    }
+                    
+                    // Cacher l'indicateur après premier swipe
+                    if (showSwipeHint) {
+                        setShowSwipeHint(false);
+                        localStorage.setItem('femmesTRAE_swipeHintSeen', 'true');
+                    }
+                }
+                
+                setTouchStartX(null);
+            };
+
+            // Gérer le clic sur le texte en mode souffleur
+            const handlePrompterClick = () => {
+                if (!showPrompter || !isMyRole(currentLineData)) return;
+                
+                // En mode souffleur, la réplique est automatiquement considérée comme révélée
+                if (!revealedLine) {
+                    setRevealedLine(true);
+                }
+                
+                if (prompterState === 'hidden' || prompterState === 'hint') {
+                    // Premier clic : afficher le texte complet
+                    setPrompterState('full');
+                } else if (prompterState === 'full') {
+                    // Deuxième clic : lire le texte
+                    setPrompterState('audio');
+                    speakPresidentLine(currentLineData.text);
+                } else if (prompterState === 'audio') {
+                    // Troisième clic : revenir au texte complet
+                    setPrompterState('full');
+                }
+            };
+
+            // Timer pour le souffleur
+            useEffect(() => {
+                let interval;
+                if (showPrompter && isMyRole(currentLineData) && prompterState === 'hidden') {
+                    setPrompterTimer(prompterDelay); // Initialiser avec la valeur configurée
+                    interval = setInterval(() => {
+                        setPrompterTimer(prev => {
+                            if (prev <= 1) {
+                                setPrompterState('hint');
+                                clearInterval(interval);
+                                return 0;
+                            }
+                            return prev - 1;
+                        });
+                    }, 1000);
+                } else {
+                    setPrompterTimer(prompterDelay);
+                }
+                return () => clearInterval(interval);
+            }, [currentSection, currentLine, showPrompter, prompterState, prompterDelay]);
+
+            // Réinitialiser l'état quand on change de réplique
+            useEffect(() => {
+                if (isMyRole(currentLineData)) {
+                    setPrompterState('hidden');
+                    setPrompterTimer(prompterDelay);
+                } else {
+                    setPrompterState('hidden');
+                }
+            }, [currentSection, currentLine, prompterDelay, selectedRole]);
+
+
+
+            useEffect(() => {
+                if (isPlaying) {
+                    const line = sections[currentSection].lines[currentLine];
+if (!isMyRole(line)) {
+                    const sectionLines = sections[currentSection].lines;
+                        // isCueLine = STRICTEMENT la ligne juste avant le rôle sélectionné
+                    const isCueLine = turboMode && !!sectionLines[currentLine + 1] && isMyRole(sectionLines[currentLine + 1]);
+
+                        if (turboMode && !isCueLine) {
+                            const cueIdx = findCueLineIndex(currentSection, currentLine);
+                            if (cueIdx !== null && cueIdx >= 0) {
+                                // Sauter à la cue line, le prochain useEffect appellera speak() avec isCueLine=true
+                                setCurrentLine(cueIdx);
+                            } else {
+                                // Plus de Président dans la section → sauter directement à la section suivante
+                                if (currentSection < sections.length - 1) {
+                                    const nextCueIdx = findCueLineIndex(currentSection + 1, -1);
+                                    if (nextCueIdx !== null && nextCueIdx >= 0) {
+                                        setCurrentSection(prev => prev + 1);
+                                        setCurrentLine(nextCueIdx);
+                                    } else {
+                                        setCurrentSection(prev => prev + 1);
+                                        setCurrentLine(0);
+                                    }
+                                } else {
+                                    setIsPlaying(false);
+                                }
+                            }
+                            return;
+                        }
+
+                        speak(line.text, line.gender, isCueLine);
+                    } else {
+                        setIsPlaying(false);
+                    }
+                } else {
+                    window.speechSynthesis.cancel();
+                }
+            }, [currentLine, isPlaying, currentSection, turboMode, selectedRole]);
+
+            const handleNext = () => {
+                setRevealedLine(false);
+                setPresidentSpeechState('idle');
+                if (presidentTimeoutRef.current) { clearTimeout(presidentTimeoutRef.current); presidentTimeoutRef.current = null; }
+                window.speechSynthesis.cancel();
+                const totalLines = sections[currentSection].lines.length;
+                if (currentLine < totalLines - 1) {
+                    setCurrentLine(prev => prev + 1);
+                    setIsPlaying(true);
+                } else if (currentSection < sections.length - 1) {
+                    setCurrentSection(prev => prev + 1);
+                    setCurrentLine(0);
+                    setIsPlaying(true);
+                } else {
+                    setIsPlaying(false);
+                }
+            };
+
+            const handlePrevious = () => {
+                setRevealedLine(false);
+                setPresidentSpeechState('idle');
+                if (presidentTimeoutRef.current) { clearTimeout(presidentTimeoutRef.current); presidentTimeoutRef.current = null; }
+                window.speechSynthesis.cancel();
+                if (currentLine > 0) {
+                    setCurrentLine(prev => prev - 1);
+                } else if (currentSection > 0) {
+                    setCurrentSection(prev => prev - 1);
+                    setCurrentLine(sections[currentSection - 1].lines.length - 1);
+                }
+            };
+
+            const handleReset = () => {
+                setIsPlaying(false);
+                setCurrentSection(0);
+                setCurrentLine(0);
+                setRevealedLine(false);
+                setPresidentSpeechState('idle');
+                if (presidentTimeoutRef.current) { clearTimeout(presidentTimeoutRef.current); presidentTimeoutRef.current = null; }
+                window.speechSynthesis.cancel();
+            };
+
+            const currentLineData = sections[currentSection].lines[currentLine];
+
+            return React.createElement('div', { 
+                className: "min-h-screen p-4",
+                ref: rootRef,
+                onTouchStart: handleTouchStart,
+                onTouchEnd: handleTouchEnd
+            },
+                React.createElement('div', { className: "max-w-4xl mx-auto" },
+                    React.createElement('div', { className: "text-center mb-3 pt-4" },
+                        React.createElement('h1', { className: "text-4xl font-bold mb-2" }, 'Le Petit Prince'),
+                        React.createElement('p', { className: "text-orange-300 text-lg" }, `${selectedRole}`),
+                        React.createElement('p', { className: "text-orange-400/70 text-sm mt-1" }, '🎭 Adaptation théâtrale complète'),
+                        
+                        // Indicateur de gestes
+                        showSwipeHint && React.createElement('div', { className: "mt-4 flex items-center justify-center gap-2 swipe-hint" },
+                            React.createElement('svg', { width: "24", height: "24", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2" },
+                                React.createElement('path', { d: "M14 5l7 7m0 0l-7 7m7-7H3" })
+                            ),
+                            React.createElement('span', { className: "text-sm text-orange-300" }, 'Swipe gauche/droite pour naviguer')
+                        )
+                    ),
+                    React.createElement('div', { className: "mb-6" },
+                        React.createElement('div', { className: "mb-3 flex items-center gap-2" },
+                            React.createElement('span', { className: "text-lg shrink-0" }, '🎭'),
+                            React.createElement('select', {
+                                value: selectedRole,
+                                onChange: (e) => {
+                                    const newRole = e.target.value;
+                                    setSelectedRole(newRole);
+                                    const s = JSON.parse(localStorage.getItem('femmesTRAE_settings') || '{}');
+                                    localStorage.setItem('femmesTRAE_settings', JSON.stringify({ ...s, selectedRole: newRole }));
+                                },
+                                className: "min-w-0 w-full p-1.5 bg-slate-700 rounded border border-slate-600 text-white text-xs"
+                            }, allRoles.map(role => React.createElement('option', { key: role, value: role }, role)))
+                        ),
+                        scriptLoadError && React.createElement('label', {
+                            className: "block mb-3 p-2 text-center text-sm text-orange-200 bg-slate-800 rounded cursor-pointer"
+                        },
+                            'Sélectionner LEPETITPRINCE_Theatre.txt pour charger les 26 scènes',
+                            React.createElement('input', {
+                                type: 'file',
+                                accept: '.txt,text/plain',
+                                className: 'hidden',
+                                onChange: (event) => {
+                                    const file = event.target.files?.[0];
+                                    if (file) file.text().then(loadFullScript);
+                                }
+                            })
+                        ),
+                        React.createElement('div', { className: "grid grid-cols-3 sm:grid-cols-5 lg:grid-cols-6 gap-2 pb-2" },
+                            sections.map((_, idx) =>
+                                React.createElement('button', {
+                                    key: idx,
+                                    onClick: () => {
+                                        setCurrentSection(idx);
+                                        setCurrentLine(0);
+                                        setIsPlaying(false);
+                                        setRevealedLine(false);
+                                        setPresidentSpeechState('idle');
+                                        if (presidentTimeoutRef.current) { clearTimeout(presidentTimeoutRef.current); presidentTimeoutRef.current = null; }
+                                        window.speechSynthesis.cancel();
+                                    },
+                                    className: `w-full py-2 px-1 rounded text-xs leading-tight text-center whitespace-nowrap transition-all ${
+                                        currentSection === idx ? 'bg-red-600 shadow-lg shadow-red-500/50' : 'bg-slate-700 hover:bg-slate-600'
+                                    }`
+                                }, `Scène ${idx + 1}`)
+                            )
+                        ),
+                        React.createElement('div', { className: "flex items-center justify-between mt-2" },
+                            React.createElement('p', { className: "text-sm text-orange-300" }, 
+                                `${currentLine + 1} / ${sections[currentSection].lines.length} lignes`
+                            ),
+                            React.createElement('button', {
+                                onClick: () => setTurboMode(!turboMode),
+                                className: `flex items-center gap-2 px-3 py-1 rounded-lg text-sm transition-all ${
+                                    turboMode ? 'bg-yellow-600 shadow-lg shadow-yellow-500/50' : 'bg-slate-700 hover:bg-slate-600'
+                                }`,
+                                title: "Mode Turbo : saute à la réplique juste avant le Président"
+                            },
+                                React.createElement(ZapIcon),
+                                turboMode ? 'Mode Turbo ⚡' : 'Mode Normal'
+                            )
+                        )
+                    ),
+                    React.createElement('div', { className: "bg-slate-800/50 backdrop-blur rounded-2xl p-6 mb-6 min-h-[300px] border border-red-500/20" },
+                        React.createElement('div', { className: "flex items-start gap-4 mb-4" },
+                            React.createElement('div', { 
+                                className: `px-3 py-1 rounded-full text-sm font-semibold ${
+                                    isMyRole(currentLineData) ? 'bg-green-600' : 
+                                    currentLineData.gender === 'female' ? 'bg-pink-600' : 'bg-blue-600'
+                                }`
+                            }, normalizeCharacter(currentLineData.character))
+                        ),
+                        React.createElement('div', { className: "text-xl leading-relaxed" },
+                            isMyRole(currentLineData) ? 
+                                React.createElement('div', {
+                                    className: `bg-green-900/30 border-l-4 border-green-500 p-4 rounded transition-all ${
+                                        !revealedLine && !showPrompter ? 'cursor-pointer hover:bg-green-900/40' : ''
+                                    } ${showPrompter ? 'shadow-lg shadow-green-500/30' : ''}`
+                                },
+                                    React.createElement('div', { className: "flex justify-between items-center mb-2" },
+                                        React.createElement('p', { className: "text-green-100 font-semibold" }, `🎭 ${selectedRole.toUpperCase()}`),
+                                        showPrompter && React.createElement('div', { className: "flex items-center gap-2" },
+                                            prompterState === 'hidden' ? React.createElement(EyeOffIcon) : 
+                                            prompterState === 'hint' ? React.createElement(EyeIcon) :
+                                            prompterState === 'audio' ? React.createElement(Volume2Icon) : React.createElement(EyeIcon),
+                                            React.createElement('span', { className: "text-xs text-green-300" },
+                                                prompterState === 'hidden' ? `Indice dans ${prompterTimer}s` :
+                                                prompterState === 'hint' ? 'Indice : 7 premiers mots' :
+                                                prompterState === 'audio' ? 'Lecture en cours' : 'Texte complet'
+                                            )
+                                        )
+                                    ),
+                                    (revealedLine || showPrompter) ? 
+                                        React.createElement('div', null,
+                                            React.createElement('p', { 
+                                                className: `cursor-pointer transition-colors mobile-tap-area ${
+                                                    prompterState === 'audio' ? 'text-green-300' : 'text-white hover:text-green-200'
+                                                }`,
+                                                onClick: showPrompter ? handlePrompterClick : () => handleTextTap(currentLineData.text),
+                                                title: showPrompter ? 
+                                                    (prompterState === 'hidden' || prompterState === 'hint' ? 'Cliquer pour voir le texte complet' :
+                                                     prompterState === 'full' ? 'Cliquer pour écouter' : 'Cliquer pour voir le texte') :
+                                                    (presidentSpeechState === 'playing' ? 'Cliquer pour mettre en pause' :
+                                                     presidentSpeechState === 'paused' ? 'Cliquer pour reprendre' :
+                                                     'Cliquer pour entendre · Double-tap pour reprendre depuis le début')
+                                            }, 
+                                                showPrompter ? getPrompterText(currentLineData.text) : currentLineData.text
+                                            ),
+                                            !showPrompter && React.createElement('p', { className: "text-green-300/70 text-sm mt-2 italic" }, 
+                                                presidentSpeechState === 'playing' ? '⏸ Cliquez pour mettre en pause' :
+                                                presidentSpeechState === 'paused' ? '▶ Cliquez pour reprendre' :
+                                                '🔊 Cliquez sur le texte pour l\'entendre'
+                                            )
+                                        ) :
+                                        React.createElement('p', { 
+                                            className: "text-green-300/50 italic text-center py-8 mobile-tap-area",
+                                            onClick: () => setRevealedLine(true)
+                                        }, 'Cliquez pour révéler votre texte')
+                                ) :
+                                React.createElement('p', { className: "text-gray-200 text-display" }, currentLineData.text)
+                        )
+                    ),
+                    React.createElement('div', { className: "flex justify-center gap-3 mb-6 mobile-controls" },
+                        React.createElement('button', { onClick: handleReset, className: "p-4 bg-slate-700 hover:bg-slate-600 rounded-full transition-all mobile-tap-area control-button flex items-center justify-center", title: "Recommencer" }, React.createElement(RotateCcwIcon)),
+                        React.createElement('button', { onClick: handlePrevious, className: "p-4 bg-slate-700 hover:bg-slate-600 rounded-full transition-all disabled:opacity-50 disabled:cursor-not-allowed mobile-tap-area control-button flex items-center justify-center", disabled: currentSection === 0 && currentLine === 0, title: "Précédent" }, React.createElement(SkipBackIcon)),
+                        React.createElement('button', { onClick: handleNext, className: "p-5 bg-red-600 hover:bg-red-500 rounded-full shadow-lg shadow-red-500/50 transition-all mobile-tap-area control-button flex items-center justify-center", title: "Suivant" }, React.createElement(SkipForwardIcon)),
+                        React.createElement('button', { onClick: () => {
+                            setShowPrompter(!showPrompter);
+                            saveSettings();
+                        }, className: `p-4 rounded-full transition-all mobile-tap-area control-button flex items-center justify-center ${
+                            showPrompter ? 'bg-green-600 hover:bg-green-500 shadow-lg shadow-green-500/50' : 'bg-slate-700 hover:bg-slate-600'
+                        }`, title: showPrompter ? "Désactiver le souffleur" : "Activer le souffleur" }, React.createElement(EyeIcon)),
+                        React.createElement('button', { onClick: () => setShowSettings(!showSettings), className: "p-5 bg-slate-700 hover:bg-slate-600 rounded-full transition-all mobile-tap-area control-button flex items-center justify-center", title: "Réglages" }, React.createElement(SettingsIcon)),
+                        React.createElement('button', {
+                            onClick: toggleBookmark,
+                            className: `p-5 rounded-full transition-all mobile-tap-area control-button flex items-center justify-center ${
+                                isBookmarked() 
+                                    ? 'bg-yellow-600 hover:bg-yellow-500' 
+                                    : 'bg-slate-700 hover:bg-slate-600'
+                            }`,
+                            title: isBookmarked() ? "Retirer le marque-page" : "Ajouter un marque-page"
+                        }, isBookmarked() ? React.createElement(BookmarkFilledIcon) : React.createElement(BookmarkIcon)),
+                        React.createElement('button', {
+                            onClick: () => setShowBookmarks(!showBookmarks),
+                            className: `p-5 rounded-full transition-all mobile-tap-area control-button flex items-center justify-center ${
+                                showBookmarks 
+                                    ? 'bg-purple-600 hover:bg-purple-500' 
+                                    : 'bg-slate-700 hover:bg-slate-600'
+                            }`,
+                            title: "Voir les marque-pages"
+                        }, React.createElement(ListIcon))
+                    ),
+                    showSettings && React.createElement('div', { className: "bg-slate-800/90 backdrop-blur rounded-2xl p-6 mb-6 border border-red-500/20" },
+                        React.createElement('h3', { className: "text-xl font-bold mb-4 flex items-center gap-2" }, React.createElement(Volume2Icon), 'Réglages des voix'),
+                        React.createElement('div', { className: "space-y-4" },
+                            React.createElement('div', null,
+                                React.createElement('label', { className: "block mb-2" }, `Vitesse: ${speechRate.toFixed(2)}x ${turboMode ? '(Mode Turbo actif ⚡)' : ''}`),
+                                React.createElement('input', { type: "range", min: "0.90", max: "1.40", step: "0.05", value: speechRate, onChange: (e) => {
+                                    setSpeechRate(parseFloat(e.target.value));
+                                    saveSettings();
+                                }, className: "w-full" })
+                            ),
+                            React.createElement('div', null,
+                                React.createElement('label', { className: "block mb-2" }, `Pause virgules (,:;): ${commaPause.toFixed(2)}s`),
+                                React.createElement('input', { type: "range", min: "0", max: "0.5", step: "0.01", value: commaPause, onChange: (e) => {
+                                    setCommaPause(parseFloat(e.target.value));
+                                    saveSettings();
+                                }, className: "w-full" })
+                            ),
+                            React.createElement('div', null,
+                                React.createElement('label', { className: "block mb-2" }, `Pause phrases (.!?): ${sentencePause.toFixed(2)}s`),
+                                React.createElement('input', { type: "range", min: "0", max: "1.5", step: "0.01", value: sentencePause, onChange: (e) => {
+                                    setSentencePause(parseFloat(e.target.value));
+                                    saveSettings();
+                                }, className: "w-full" })
+                            ),
+                            React.createElement('div', null,
+                                React.createElement('label', { className: "block mb-2" }, '👩 VOIX FEMMES'),
+                                React.createElement('select', { value: selectedVoices['FEMMES'] || '', onChange: (e) => {
+                                    setSelectedVoices({...selectedVoices, 'FEMMES': e.target.value});
+                                    saveSettings();
+                                }, className: "w-full p-2 bg-slate-700 rounded border border-slate-600 text-white" },
+                                    voices.filter(v => v.lang.startsWith('fr')).map(voice => React.createElement('option', { key: voice.name, value: voice.name }, voice.name))
+                                )
+                            ),
+                            React.createElement('div', null,
+                                React.createElement('label', { className: "block mb-2" }, '👨 VOIX HOMMES'),
+                                React.createElement('select', { value: selectedVoices['HOMMES'] || '', onChange: (e) => {
+                                    setSelectedVoices({...selectedVoices, 'HOMMES': e.target.value});
+                                    saveSettings();
+                                }, className: "w-full p-2 bg-slate-700 rounded border border-slate-600 text-white" },
+                                    voices.filter(v => v.lang.startsWith('fr')).map(voice => React.createElement('option', { key: voice.name, value: voice.name }, voice.name))
+                                )
+                            ),
+                            React.createElement('div', null,
+                                React.createElement('label', { className: "block mb-2" }, `⏱️ Délai du souffleur: ${prompterDelay}s`),
+                                React.createElement('input', { type: "range", min: "1", max: "9", step: "1", value: prompterDelay, onChange: (e) => {
+                                    setPrompterDelay(parseInt(e.target.value));
+                                    saveSettings();
+                                }, className: "w-full" })
+                            )
+                        )
+                    ),
+                    showBookmarks && React.createElement('div', { className: "bg-slate-800/90 backdrop-blur rounded-2xl p-6 mb-6 border border-purple-500/20" },
+                        React.createElement('h3', { className: "text-xl font-bold mb-4 flex items-center gap-2" },
+                            React.createElement(BookmarkFilledIcon),
+                            `Marque-pages (${Object.keys(bookmarks).length})`
+                        ),
+                        Object.keys(bookmarks).length === 0 ? 
+                            React.createElement('p', { className: "text-gray-400 text-center py-4" }, 
+                                'Aucun marque-page. Cliquez sur l\'icône 📌 pour en ajouter.'
+                            ) :
+                            React.createElement('div', { className: "space-y-3 max-h-80 overflow-y-auto" },
+                                Object.entries(bookmarks).map(([key, bookmark]) => 
+                                    React.createElement('div', { 
+                                        key: key,
+                                        className: "bg-slate-700/50 rounded-lg p-4 border border-slate-600"
+                                    },
+                                        React.createElement('div', { className: "flex justify-between items-start mb-2" },
+                                            React.createElement('div', null,
+                                                React.createElement('span', { className: `px-2 py-1 rounded text-xs font-semibold ${
+                                                    bookmark.character === 'Le Président' ? 'bg-red-600' : 
+                                                    bookmark.character === 'La jurée Adrienne' ? 'bg-blue-600' : 'bg-green-600'
+                                                }` }, bookmark.character),
+                                                React.createElement('span', { className: "text-sm text-gray-400 ml-2" },
+                                                    `Section ${bookmark.section + 1}, Ligne ${bookmark.line + 1}`
+                                                )
+                                            ),
+                                            React.createElement('button', { 
+                                                onClick: () => removeBookmark(key),
+                                                className: "text-gray-400 hover:text-red-400 text-sm"
+                                            }, '×')
+                                        ),
+                                        React.createElement('p', { className: "text-sm text-gray-300 mb-2" }, bookmark.text),
+                                        React.createElement('button', { 
+                                            onClick: () => goToBookmark(bookmark.section, bookmark.line), 
+                                            className: "text-xs text-purple-400 hover:text-purple-300"
+                                        },
+                                            'Aller à cette réplique'
+                                        )
+                                    )
+                                )
+                            )
+                    ),
+                    React.createElement('div', { className: "bg-slate-800/50 backdrop-blur rounded-lg p-4" },
+                        React.createElement('div', { className: "mb-2 flex justify-between text-sm text-orange-300" },
+                            React.createElement('span', null, `Section ${currentSection + 1} / ${sections.length}`),
+                            React.createElement('span', null, `Ligne ${currentLine + 1} / ${sections[currentSection].lines.length}`)
+                        ),
+                        React.createElement('div', { className: "w-full bg-slate-700 rounded-full h-2" },
+                            React.createElement('div', { className: "bg-red-600 h-2 rounded-full transition-all duration-300", style: { width: `${((currentLine + 1) / sections[currentSection].lines.length) * 100}%` } })
+                        )
+                    )
+                )
+            );
+        };
+        ReactDOM.createRoot(document.getElementById('root')).render(React.createElement(FemmesRehearsal));
+    </script>
+</body>
+</html>
