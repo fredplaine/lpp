@@ -147,7 +147,6 @@
                     setCommaPause(settings.commaPause || 0.25);
                     setSentencePause(settings.sentencePause || 0.75);
                     setSelectedVoices(settings.selectedVoices || {});
-                    setShowPrompter(settings.showPrompter || false);
                     setPrompterDelay(settings.prompterDelay || 3);
                     if (settings.selectedRole) setSelectedRole(normalizeCharacter(settings.selectedRole));
                 }
@@ -179,7 +178,6 @@
                     commaPause,
                     sentencePause,
                     selectedVoices,
-                    showPrompter,
                     prompterDelay,
                     selectedRole
                 };
@@ -1073,7 +1071,6 @@ if (!isMyRole(line)) {
                         React.createElement('button', { onClick: handleNext, className: "p-5 bg-red-500 text-white hover:bg-red-600 rounded-full shadow-md shadow-red-500/30 transition-all mobile-tap-area control-button flex items-center justify-center", title: "Suivant" }, React.createElement(SkipForwardIcon)),
                         React.createElement('button', { onClick: () => {
                             setShowPrompter(!showPrompter);
-                            saveSettings();
                         }, className: `p-4 rounded-full transition-all mobile-tap-area control-button flex items-center justify-center ${
                             showPrompter ? 'bg-sky-200 text-slate-900 hover:bg-sky-300 shadow-md shadow-sky-300/40' : 'bg-white/65 text-slate-800 hover:bg-white border border-sky-200'
                         }`, title: showPrompter ? "Désactiver le souffleur" : "Activer le souffleur" }, React.createElement(EyeIcon)),
