@@ -91,6 +91,7 @@
         const normalizeCharacter = (character) => {
             const normalized = character.replace(/'/g, '’').trim().toLocaleUpperCase('fr-FR');
             if (/^(?:L’)?AVIATEUR$/.test(normalized)) return 'L’AVIATEUR';
+            if (normalized === 'RÉVERBÈRES') return 'L’ALLUMEUR DE RÉVERBÈRES';
             if (normalized === 'ROSE') return 'ROSES';
             if (normalized === 'HOMME D’AFFAIRES A') return 'HOMME D’AFFAIRES';
             if (normalized === 'LE' || normalized === 'LE PETIT PRINCE') return 'PETIT PRINCE';
