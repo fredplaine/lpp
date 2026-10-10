@@ -82,6 +82,10 @@ LE PETIT PRINCE S'il vous plaît, dessine-moi un mouton...
 L'AVIATEUR (Prend le carnet et le crayon... Hésite.. puis répond avec un peu de mauvaise humeur)
 Mais je ne sais pas dessiner!
 LE PETIT PRINCE Ça ne fait rien. Dessine-moi un mouton!
+
+L'AVIATEUR (Comme il n’avait jamais dessiné un mouton il refit, pour lui, l’un des deux seuls dessins dont il était capable. Celui du boa fermé.)
+LE PETIT PRINCE Non ! Non ! Je ne veux pas d’un éléphant dans un boa. Un boa c’est très dangereux, et un éléphant c’est très encombrant. Chez moi c’est tout petit. J’ai besoin d’un mouton. Dessine-moi un mouton. 
+
 L'AVIATEUR (effectue un dessin qu'il remet au petit prince - Sur l’écran, on verra le dessin du premier mouton)
 LE PETIT PRINCE (Il le regarde attentivement et puis) Non! Celui-là est très malade. Fais-en un autre!
 L’AVIATEUR (Fait un autre dessin et le lui montre. Sur l’écran, on voit le dessin du deuxième mouton)
