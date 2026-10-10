@@ -60,6 +60,7 @@ J’ai ainsi vécu seul, sans personne avec qui parler véritablement, jusqu’�
 
 
 # SCÈNE DEUX
+
 LE PETIT PRINCE S’il vous plaît, dessine-moi un mouton ?
 L’AVIATEUR Quoi ?
 (Il saute sur ses pieds comme s’il avait été frappé par la foudre. Il se frotte les yeux plusieurs fois en regardant attentivement autour de lui. Il voit une petite personne extraordinaire qui l’examine avec beaucoup de sérieux.)
@@ -95,6 +96,7 @@ LE PETIT PRINCE (Il regarde le dessin et se penche.) Pas si petit que ça... Tie
 
 
 # SCÈNE TROIS
+
 LE PETIT PRINCE Qu'est-ce que c’est que cette chose-là?
 L'AVIATEUR Ce n'est pas une chose - ça vole. C’est un avion. C'est mon avion
 LE PETIT PRINCE (Surpris presque en criant) Comment?!! Tu es tombé du ciel!
@@ -124,6 +126,7 @@ LE PETIT PRINCE (sérieusement) Ça ne fait rien, c’est tellement petit chez m
 
 
 # SCÈNE QUATRE
+
 (Sur l'écran, vous verrez la carte des étoiles se déplacer avec un son stellaire, jusqu’à la planète du
 petit prince)
 
@@ -245,7 +248,9 @@ Il avait pris au sérieux des mots sans importance qui l’avaient rendu malheur
 LE PETIT PRINCE (au public. à l’aviateur)
 Je n'aurais pas dû l'écouter. il ne faut jamais écouter les fleurs. Il faut les regarder et les respirer. La mienne embaumait ma planète, mais je ne savais pas m'en réjouir. Cette histoire de griffes, qui m'avait tellement agacé, eût dû m'attendrir..." 
 "Je n'ai alors rien su comprendre J'aurais dû la juger sur les actes et non sur les mots. Elle m'embaumait et m'éclairait. Je n'aurais jamais dû m'enfuir ! J'aurais dû deviner sa tendresse derrière ses pauvres ruses. Les fleurs sont si contradictoires ! Mais j'étais trop jeune pour savoir l'aimer." 
+
 # SCÈNE NEUF
+
 LE PETIT PRINCE Adieu!
 FLEUR (ne répond pas)
 LE PETIT PRINCE (répète nettement) Adieu!
@@ -257,6 +262,7 @@ FLEUR  Il faut bien que je supporte deux ou trois chenilles si je veux connaîtr
 
 
 # SCÈNE DIX
+
 On entend le gazouillis d'innombrables oiseaux et le battement de leurs ailes. sur l'écran, on voit
 une grande nuée d'oiseaux... puis des voix superposées.
 L’AVIATEUR (voix avec beaucoup de réverbération puis superposée) Je crois qu’il profita, pour son évasion, d’une migration d'oiseaux sauvages. Le petit prince se trouvait ainsi dans la région des astéroïdes 325, 326, 327, 328, 329 et 330. ( voix superposées jusqu'à "330"). Il commença à les visiter pour chercher une occupation et pour s’instruire. Le premier astéroïde était habité par un roi.
@@ -358,27 +364,9 @@ ROI Et alors tu te jugeras toi-même. C’est la chose la plus difficile. Il est
 juger soi-même que de juger autrui. Si tu peux te juger correctement, tu es un véritable sage
 LE PETIT PRINCE Moi, je peux me juger moi-même, n’importe ou. Je n’ai pas besoin d’habiter ici 
 ROI Hem! hem!... (réfléchissant) Je crois que sur ma planète quelque part il y a un vieux rat. Je
-l'entend pendant la nuit. Tu pourras juger ce vieux rat. De temps en temps, tu le condamneras à
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-mort pour que sa vie dépende de ta justice. Mais tu le gracieras chaque fois pour l’économiser.
+l'entend pendant la nuit. Tu pourras juger ce vieux rat. De temps en temps, tu le condamneras à mort pour que sa vie dépende de ta justice. Mais tu le gracieras chaque fois pour l’économiser.
 n'y en a qu’un.
+
 LE PETIT PRINCE Moi, Je n'aime pas condamner à mort, Je préfère partir.
 ROI (presque avec douleur) Non! s’il te plaît! Non!
 LE PETIT PRINCE Si Votre Majesté v desirait être obéie ponctuellement, elle pourrait me donner un ordre raisonnable. Elle pourrait m'ordonner, par exemple, de partir avant une minute. || me semble que les
@@ -388,7 +376,9 @@ LE PETIT PRINCE (hésite puis soupire et va)
 ROI (puis avec l'air d’une grande autorité criant derrière lui pour le convaincre de rester)
 Je te nomme mon ambassadeur |
 LE PETIT PRINCE (à lui-même... se déplaçant. comme s’il pensait à haute voix) Les grandes personnes sont bien étranges!
+
 # SCÈNE ONZE
+
 L’AVIATEUR La deuxième planète était habitée par un vaniteux.
 VANITEUX Moi je suis le plus drôle. Moi je suis le plus beau, Moi je suis le plus élégant, le plus riche.
 J'aime beaucoup qu’on m'aime! (Apercevant le petit prince) Ah! ah! voici la visite d’un admirateur
@@ -547,6 +537,7 @@ admiration. Sur la dernière réplique de l’ aviateur, le réverbère sera ét
 
 
 # SCÈNE QUINZE
+
 (nuit puis lumières)
 L’AVIATEUR La sixième planète était une planète dix fois plus vaste. Elle était habitée par un vieux monsieur qui écrivait d'énormes livres.
 GÉOGRAPHE Tiens! Voilà un explorateur!
@@ -611,8 +602,11 @@ les villes, des hommes, et beaucoup de chaos)
 
 
 # SCÈNE SEIZE
+
 L’AVIATEUR La septième planète fut donc la Terre. La Terre n’est pas une planète quelconque. On y compte cent-onze rois, sept milles géographes neuf cent mille businessmen, sept million et demi d’ivrognes et trois cent onze millions de vaniteux. C’est à dire environ 2 milliards de grandes personnes!
+
 # SCÈNE DIX-SEPT
+
 L’AVIATEUR Le Petit Prince une fois sur Terre,  fut donc bien surpris de ne voir personne. Il avait déjà peur de s'être trompé de planète, quand un anneau couleur de lune remua dans le sable. (Nuit)
 LE PETIT PRINCE Bonne nuit
 SERPENT Bonne nuit
@@ -637,10 +631,10 @@ LE PETIT PRINCE (le regarde sans rien dire)
 SERPENT Tu me fais pitié, toi si faible, sur cette Terre de granit. Je pourrais t'aider un jour si tu regrettes trop ta planète.
 Je peux...
 LE PETIT PRINCE (L’interrompt impatient) Oh! j'ai très bien compris, mais pourquoi parles-tu toujours par énigmes?
-SERPENT Je les résous toutes | (pause. Puis il se déplace )
-
+SERPENT Je les résous toutes. (pause. Puis il se déplace )
 
 # SCÈNE DIX-HUIT
+
 L’AVIATEUR Le petit prince traversa le désert et fit l’ascension d’ une haute montagne espérant voir d’un coup toute la planète et tous les hommes. Mais il n'aperçut rien que des aiguilles de roc bien aiguisées.
 LE PETIT PRINCE Bonjour
 ÉCHO Bonjour... bonjour... bonjour...
@@ -665,7 +659,9 @@ LE PETIT PRINCE Ah. (plus déçu et se sentant trahi)Je me croyais riche d'une f
 et je ne possède qu’une rose quelconque. Elle et mes trois volcans qui m’arrivent aux genoux, et
 dont l’un, peut-être, est éteint pour toujours, ne font pas de moi un prince très important...".
 (Il s’assoit et pleure)
+
 # SCÈNE VINGT
+
 RENARD Bonjour
 LE PETIT PRINCE (// ne voit personne) Bonjour. Mais où es-tu?
 RENARD Je suis là... sous le pommier
@@ -762,14 +758,14 @@ LE PETIT PRINCE Seuls les enfants savent ce qu’ils cherchent. Ils perdent leur
 de chiffon qui devient si importante que si vous la leur enlevez, ils pleurent.
 AIGUILLEUR Ils ont de la chance
 Vrombissement. Cinquième illumination rapide.
+
 # SCÈNE VINGT-DEUX
+
 MARCHANDS (Is crient à la manière du marchand) Pilules... Pilules qui apaisent la soif... pilules
 perfectionnées qui apaisent la soif. une pilule par semaine pour satisfaire votre soif. des pilules.
 un peu à la semaine pour satisfaire votre soif. Pilules...
 LE PETIT PRINCE Bonjour
 MARCHAND 1 Bonjour à tous
-
-
 MARCHAND 2 Bonjour
 LE PETIT PRINCE Pourquoi vous vendez ça?
 MARCHAND 1 C’est une grande économie de temps...
@@ -849,7 +845,9 @@ n’y eu rien de plus fragile sur Terre. Ce que je voyais n’était que l'écor
 invisible. Ce qui m'émouvait le plus chez ce petit prince, c'était sa fidélité pour une fleur et l'image d'une rose qui resplendissait en lui comme la flamme d’une lampe, même quand il dormait.
 Et je le devinais plus fragile encore. Il faut bien protéger les lampes: un coup de vent peut les
 éteindre.
+
 # SCÈNE VINGT-QUATRE
+
 (Un seau descend d’une poulie)
 L’AVIATEUR C'est étrange: Tout est prêt: la poulie, le seau et la corde (Il ne veut pas que l'enfant fasse des efforts) Non, laisse-moi faire, c’ est trop lourd pour toi (Il prend le seau doucement, il le soulève jusqu'à ses lèvres. Le Petit Prince boit les yeux fermés avec un grand délice).
 LE PETIT PRINCE Les hommes de chez toi cultivent 5000 roses dans le même jardin et ils n’y trouvent pas ce qu'ils cherchent.
