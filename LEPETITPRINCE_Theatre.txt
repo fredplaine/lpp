@@ -640,7 +640,7 @@ LE PETIT PRINCE (L’interrompt impatient) Oh! j'ai très bien compris, mais pou
 SERPENT Je les résous toutes | (pause. Puis il se déplace )
 
 
-Scène DIX-HUIT
+# SCÈNE DIX-HUIT
 L’AVIATEUR Le petit prince traversa le désert et fit l’ascension d’ une haute montagne espérant voir d’un coup toute la planète et tous les hommes. Mais il n'aperçut rien que des aiguilles de roc bien aiguisées.
 LE PETIT PRINCE Bonjour
 ÉCHO Bonjour... bonjour... bonjour...
