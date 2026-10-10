@@ -289,7 +289,7 @@
             };
 
             useEffect(() => {
-                fetch('./LEPETITPRINCE_Theatre.txt')
+                fetch(`./LEPETITPRINCE_Theatre.txt?v=${Date.now()}`, { cache: 'no-store' })
                     .then(response => {
                         if (!response.ok) throw new Error('Script unavailable');
                         return response.text();
