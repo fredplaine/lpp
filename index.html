@@ -98,6 +98,24 @@
             'XXV', 'XXVI'
         ];
 
+        const stripStageDirections = (text) => {
+            let depth = 0;
+            let result = '';
+
+            for (const character of text) {
+                if (character === '(') {
+                    depth += 1;
+                } else if (character === ')') {
+                    if (depth > 0) depth -= 1;
+                    else result += character;
+                } else if (depth === 0 || character === '\n' || character === '\r') {
+                    result += character;
+                }
+            }
+
+            return result;
+        };
+
         const normalizeCharacter = (character) => {
             const normalized = character.replace(/'/g, '’').trim().toLocaleUpperCase('fr-FR');
             if (/^(?:L’)?AVIATEUR$/.test(normalized)) return 'L’AVIATEUR';
@@ -197,147 +215,12 @@
                 localStorage.setItem('femmesTRAE_prompter', JSON.stringify(prompterSettings));
             };
 
-            const initialSections = [
-                {
-                    title: "Scène 1 · Histoires vraies",
-                    lines: [
-                        { character: "Enfant", text: "Histoires vraies de la nature...", gender: "male", isPresident: false },
-                        { character: "L’aviateur", text: "Quand j’avais six ans, j’ai vu, une fois, une magnifique image dans un livre sur la forêt vierge qui s’appelait Histoires vécues. Ça représentait un serpent boa qui avalait un fauve.", gender: "male", isPresident: false },
-                        { character: "Enfant", text: "Les boas avalent leur proie toute entière, sans la mâcher. Ensuite, ils ne peuvent plus bouger et ils dorment pendant les six mois de leur digestion.", gender: "male", isPresident: false },
-                        { character: "L’aviateur", text: "J’ai longuement médité sur les aventures de la jungle. Et à mon tour, j’ai pu dessiner mon premier dessin.", gender: "male", isPresident: false },
-                        { character: "Enfant", text: "Monsieur... Excuse-moi. Monsieur ! Regarde, tu as peur de mon dessin ?", gender: "male", isPresident: false },
-                        { character: "L’aviateur", text: "Peur ? Pourquoi devrais-je avoir peur d’un chapeau ?", gender: "male", isPresident: false },
-                        { character: "Enfant", text: "Monsieur, regarde ça !", gender: "male", isPresident: false },
-                        { character: "L’aviateur", text: "Un conseil. Laisse de côté tes dessins de boas ouverts ou fermés. Intéresse-toi plutôt à la géographie, à l’histoire, au calcul et à la grammaire.", gender: "male", isPresident: false },
-                        { character: "Enfant", text: "Il observe de nouveau son dessin, ferme son livre et quitte la scène déçu.", gender: "male", isPresident: false },
-                        { character: "L’aviateur", text: "L’insuccès de mon dessin numéro un et de mon dessin numéro deux m’avait découragé. Les grandes personnes ne comprennent jamais rien toutes seules, et c’est fatiguant pour les enfants de toujours leur donner des explications.", gender: "male", isPresident: false },
-                        { character: "Voix", text: "C’est un chapeau !", gender: "male", isPresident: false }
-                    ]
-                },
-                {
-                    title: "Scène 2 · Le mouton",
-                    lines: [
-                        { character: "Petit Prince", text: "S’il vous plaît, dessine-moi un mouton.", gender: "male", isPresident: false },
-                        { character: "L’aviateur", text: "Mais je ne sais pas dessiner !", gender: "male", isPresident: false },
-                        { character: "Petit Prince", text: "Ça ne fait rien. Dessine-moi un mouton.", gender: "male", isPresident: false },
-                        { character: "L’aviateur", text: "Voilà. Un premier mouton. Celui-là est très malade.", gender: "male", isPresident: false },
-                        { character: "Petit Prince", text: "Non ! Celui-là est très malade. Fais-en un autre !", gender: "male", isPresident: false },
-                        { character: "L’aviateur", text: "Très bien. En voici un autre.", gender: "male", isPresident: false },
-                        { character: "Petit Prince", text: "Ce n’est pas un mouton. C’est un bélier. Il a des cornes.", gender: "male", isPresident: false },
-                        { character: "L’aviateur", text: "Celui-ci est trop vieux. Je veux un mouton qui puisse vivre longtemps.", gender: "male", isPresident: false },
-                        { character: "Petit Prince", text: "Celui-là est trop vieux. Je veux un mouton qui peut vivre longtemps.", gender: "male", isPresident: false },
-                        { character: "L’aviateur", text: "Ça, c’est la caisse ! Le mouton que tu veux est dedans !", gender: "male", isPresident: false },
-                        { character: "Petit Prince", text: "C’est tout à fait comme je voulais ! Pensez-vous que ce mouton aura besoin de beaucoup d’herbe ?", gender: "male", isPresident: false },
-                        { character: "L’aviateur", text: "Pourquoi ?", gender: "male", isPresident: false },
-                        { character: "Petit Prince", text: "Parce que chez moi, c’est tout petit.", gender: "male", isPresident: false },
-                        { character: "L’aviateur", text: "Ça suffira sûrement. Je t’ai donné un tout petit mouton.", gender: "male", isPresident: false },
-                        { character: "Petit Prince", text: "Pas si petit que ça. Tiens ! Il s’est endormi.", gender: "male", isPresident: false }
-                    ]
-                },
-                {
-                    title: "Scène 3 · D’où viens-tu ?",
-                    lines: [
-                        { character: "Petit Prince", text: "Qu’est-ce que c’est que cette chose-là ?", gender: "male", isPresident: false },
-                        { character: "L’aviateur", text: "Ce n’est pas une chose. Ça vole. C’est un avion. C’est mon avion.", gender: "male", isPresident: false },
-                        { character: "Petit Prince", text: "Comment ? Tu es tombé du ciel !", gender: "male", isPresident: false },
-                        { character: "L’aviateur", text: "Oui.", gender: "male", isPresident: false },
-                        { character: "Petit Prince", text: "Ah ! C’est drôle ! Ah ! Ah ! Ah !", gender: "male", isPresident: false },
-                        { character: "Petit Prince", text: "Alors toi aussi tu viens du ciel ! De quelle planète es-tu ?", gender: "male", isPresident: false },
-                        { character: "L’aviateur", text: "Tu viens donc d’une autre planète ?", gender: "male", isPresident: false },
-                        { character: "Petit Prince", text: "Bien sûr. Avec ça, tu ne peux pas venir de bien loin !", gender: "male", isPresident: false },
-                        { character: "L’aviateur", text: "D’où viens-tu, mon petit bonhomme ? Où est-ce « chez toi » ? Où veux-tu emporter mon mouton ?", gender: "male", isPresident: false },
-                        { character: "Petit Prince", text: "Ce qui est bien, c’est que la caisse que tu m’as donnée lui servira de maison pour la nuit.", gender: "male", isPresident: false },
-                        { character: "L’aviateur", text: "Bien sûr. Et si tu es gentil, je te donnerai aussi une corde pour l’attacher pendant le jour. Et un piquet.", gender: "male", isPresident: false },
-                        { character: "Petit Prince", text: "L’attacher ? Quelle drôle d’idée !", gender: "male", isPresident: false },
-                        { character: "L’aviateur", text: "Mais si tu ne l’attaches pas, il ira n’importe où et il se perdra.", gender: "male", isPresident: false },
-                        { character: "Petit Prince", text: "Mais où veux-tu qu’il aille ?", gender: "male", isPresident: false },
-                        { character: "L’aviateur", text: "N’importe où. Droit devant lui.", gender: "male", isPresident: false },
-                        { character: "Petit Prince", text: "Ça ne fait rien, c’est tellement petit chez moi. Tout droit, on ne peut pas aller bien loin.", gender: "male", isPresident: false }
-                    ]
-                },
-                {
-                    title: "Scène 4 · L’astéroïde B 612",
-                    lines: [
-                        { character: "L’aviateur", text: "J’avais ainsi appris que sa planète d’origine n’était à peine plus grande qu’une maison.", gender: "male", isPresident: false },
-                        { character: "L’aviateur", text: "La planète d’où venait le Petit Prince est l’astéroïde B 612.", gender: "male", isPresident: false },
-                        { character: "L’aviateur", text: "Cet astéroïde n’a été repéré qu’une seule fois dans le télescope par un astronome turc.", gender: "male", isPresident: false },
-                        { character: "L’aviateur", text: "Les grandes personnes aiment les chiffres. Si vous leur parlez d’un nouvel ami, elles vous demandent son âge, le nombre de frères et de sœurs, et combien gagne son père.", gender: "male", isPresident: false },
-                        { character: "L’aviateur", text: "Donc, si vous deviez donner aux adultes la preuve que le Petit Prince existait, le simple fait qu’il riait et voulait un mouton ne suffirait pas. Il faut dire: «La planète d’où il vient est l’astéroïde B 612.»", gender: "male", isPresident: false },
-                        { character: "L’aviateur", text: "Les enfants doivent être très indulgents envers les grandes personnes.", gender: "male", isPresident: false }
-                    ]
-                },
-                {
-                    title: "Scène 5 · Les baobabs",
-                    lines: [
-                        { character: "Petit Prince", text: "Est-il vrai que les moutons mangent des arbustes ?", gender: "male", isPresident: false },
-                        { character: "L’aviateur", text: "Oui, c’est vrai.", gender: "male", isPresident: false },
-                        { character: "Petit Prince", text: "Ah, je suis content. Alors ils mangent aussi des baobabs ?", gender: "male", isPresident: false },
-                        { character: "L’aviateur", text: "Mais les baobabs ne sont pas des arbustes. Ce sont des arbres aussi grands que les églises.", gender: "male", isPresident: false },
-                        { character: "Petit Prince", text: "Mais les baobabs avant de grandir, ça commence par être petits.", gender: "male", isPresident: false },
-                        { character: "L’aviateur", text: "C’est exact. Mais pourquoi veux-tu que les moutons mangent les petits baobabs ?", gender: "male", isPresident: false },
-                        { character: "Petit Prince", text: "Eh bien ! Ma planète est trop petite et infestée de mauvaises plantes qui la feraient éclater.", gender: "male", isPresident: false },
-                        { character: "L’aviateur", text: "C’est vrai.", gender: "male", isPresident: false },
-                        { character: "Petit Prince", text: "C’est une question de discipline. C’est un travail très ennuyeux, mais facile.", gender: "male", isPresident: false }
-                    ]
-                },
-                {
-                    title: "Scène 6 · Les couchers de soleil",
-                    lines: [
-                        { character: "Petit Prince", text: "J’aime bien les couchers de soleil. Allons voir un coucher de soleil ?", gender: "male", isPresident: false },
-                        { character: "L’aviateur", text: "Il faut attendre. Que le soleil se couche.", gender: "male", isPresident: false },
-                        { character: "Petit Prince", text: "Je me crois toujours chez moi.", gender: "male", isPresident: false },
-                        { character: "Petit Prince", text: "Un jour, j’ai vu le soleil se coucher quarante-trois fois. Quand on est tellement triste, on aime les couchers de soleil.", gender: "male", isPresident: false },
-                        { character: "L’aviateur", text: "Alors ce jour-là, tu étais donc tellement triste ?", gender: "male", isPresident: false }
-                    ]
-                },
-                {
-                    title: "Scène 7 · Les épines",
-                    lines: [
-                        { character: "Petit Prince", text: "Un mouton, s’il mange les arbustes, mange-t-il aussi les fleurs ?", gender: "male", isPresident: false },
-                        { character: "L’aviateur", text: "Un mouton mange tout ce qu’il rencontre. Même les fleurs qui ont des épines.", gender: "male", isPresident: false },
-                        { character: "Petit Prince", text: "Mais alors à quoi servent les épines ?", gender: "male", isPresident: false },
-                        { character: "L’aviateur", text: "Les épines, ça ne sert à rien. C’est inutile, c’est de la pure méchanceté de la part des fleurs.", gender: "male", isPresident: false },
-                        { character: "Petit Prince", text: "Je ne te crois pas. Les fleurs sont faibles. Elles sont naïves. Elles se rassurent comme elles le peuvent. Elles se croient terribles avec leurs épines.", gender: "male", isPresident: false },
-                        { character: "L’aviateur", text: "Je n’ai répondu n’importe quoi. Je m’occupe de choses sérieuses !", gender: "male", isPresident: false },
-                        { character: "Petit Prince", text: "Tu parles comme les grandes personnes !", gender: "male", isPresident: false },
-                        { character: "Petit Prince", text: "Il y a des milliers d’années que les fleurs font des épines. Pendant des milliers d’années, les moutons ont mangé des fleurs. N’est-ce pas une chose sérieuse d’essayer de comprendre pourquoi les fleurs travaillent si dur pour faire des épines qui sont inutiles ?", gender: "male", isPresident: false }
-                    ]
-                },
-                {
-                    title: "Scène 8 · La fleur",
-                    lines: [
-                        { character: "L’aviateur", text: "J’ai appris bien vite à mieux connaître cette fleur. Elle avait surgi un jour, d’une graine qui venait d’on ne sait où.", gender: "male", isPresident: false },
-                        { character: "Fleur", text: "Ah ! Je me réveille à peine. Je vous demande pardon... Je suis encore toute décoiffée.", gender: "female", isPresident: false },
-                        { character: "Petit Prince", text: "Comme tu es belle !", gender: "male", isPresident: false },
-                        { character: "Fleur", text: "N’est-ce pas ? Et je suis née avec le soleil. C’est l’heure, je crois, du petit déjeuner. Voulez-vous penser à moi ?", gender: "female", isPresident: false },
-                        { character: "Fleur", text: "Regarde mes épines ! Les tigres peuvent venir, avec leurs griffes !", gender: "female", isPresident: false },
-                        { character: "Petit Prince", text: "Il n’y a pas de tigres sur ma planète ! Et puis les tigres ne mangent pas d’herbe.", gender: "male", isPresident: false },
-                        { character: "Fleur", text: "Je ne suis pas une herbe !", gender: "female", isPresident: false },
-                        { character: "Fleur", text: "Je n’ai pas peur des tigres, mais je suis horrifiée par les courants d’air... N’auriez-vous pas un paravent ?", gender: "female", isPresident: false },
-                        { character: "Petit Prince", text: "Horreur des courants d’air ? C’est grave pour une plante. Vous êtes très compliquée.", gender: "male", isPresident: false },
-                        { character: "Fleur", text: "Le soir, vous m’abriterez sous une cloche de verre. Il fait très froid chez vous...", gender: "female", isPresident: false },
-                        { character: "Petit Prince", text: "Je n’aurais pas dû t’écouter. Il suffit de regarder les fleurs et de les respirer. La mienne embaumait ma planète.", gender: "male", isPresident: false },
-                        { character: "Fleur", text: "Je ne t’ai jamais menti. J’étais simplement timide, et j’avais peur de te décevoir.", gender: "female", isPresident: false }
-                    ]
-                },
-                {
-                    title: "Scène 9 · Adieu",
-                    lines: [
-                        { character: "Petit Prince", text: "Adieu !", gender: "male", isPresident: false },
-                        { character: "Fleur", text: "Ne répond pas. Ne part pas comme ça.", gender: "female", isPresident: false },
-                        { character: "Petit Prince", text: "Mais le vent...", gender: "male", isPresident: false },
-                        { character: "Fleur", text: "Je ne suis pas si enrhumée que ça. L’air frais de la nuit me fera du bien.", gender: "female", isPresident: false },
-                        { character: "Petit Prince", text: "Ce qui est important, c’est invisible pour les yeux. On ne voit bien qu’avec le cœur.", gender: "male", isPresident: false },
-                        { character: "L’aviateur", text: "Je n’ai jamais raconté cette histoire. Je sais qu’il est parti, mais je ne peux pas oublier son sourire.", gender: "male", isPresident: false }
-                    ]
-                }
-            ];
-
-            const [sections, setSections] = useState(initialSections);
+            const [sections, setSections] = useState([]);
             const [scriptLoadError, setScriptLoadError] = useState(false);
 
             const loadFullScript = (source) => {
-                const headers = [...source.matchAll(/^#\s*SCÈNE\s+(.+)$/gim)];
+                const script = stripStageDirections(source);
+                const headers = [...script.matchAll(/^#\s*SCÈNE\s+(.+)$/gim)];
                 if (headers.length !== 26) {
                     setScriptLoadError(true);
                     return;
@@ -345,10 +228,11 @@
 
                 const parsedSections = headers.map((header, index) => {
                     const bodyStart = header.index + header[0].length;
-                    const bodyEnd = headers[index + 1]?.index ?? source.length;
-                    const sourceLines = source.slice(bodyStart, bodyEnd).split(/\r?\n/);
+                    const bodyEnd = headers[index + 1]?.index ?? script.length;
+                    const sourceLines = script.slice(bodyStart, bodyEnd).split(/\r?\n/);
                     const lines = [];
                     let pendingText = '';
+                    let pendingSpeaker = null;
                     const speakers = [
                         'LE PETIT PRINCE', 'L’AVIATEUR', "L'AVIATEUR", 'ENFANT', 'FLEUR', 'VOIX',
                         'MAIN DROITE', 'MAIN GAUCHE', 'ROI', 'VANITEUX', 'IVROGNE',
@@ -368,9 +252,22 @@
                         if (match) {
                             const character = normalizeCharacter(match[1]);
                             const gender = /FLEUR|ROSE|PRINCESSE|REINE/i.test(character) ? 'female' : 'male';
-                            const dialogue = [pendingText, (match[2] || '').replace(/^\([^)]*\)\s*/, '').trim()]
+                            const spokenText = (match[2] || '').trim();
+                            if (!spokenText) {
+                                pendingSpeaker = character;
+                                return;
+                            }
+                            const dialogue = [pendingText, spokenText]
                                 .filter(Boolean).join(' ');
                             pendingText = '';
+                            pendingSpeaker = null;
+                            if (dialogue) lines.push({ character, text: dialogue, gender, isPresident: false });
+                        } else if (pendingSpeaker) {
+                            const character = pendingSpeaker;
+                            const gender = /FLEUR|ROSE|PRINCESSE|REINE/i.test(character) ? 'female' : 'male';
+                            const dialogue = [pendingText, text].filter(Boolean).join(' ');
+                            pendingText = '';
+                            pendingSpeaker = null;
                             if (dialogue) lines.push({ character, text: dialogue, gender, isPresident: false });
                         } else if (lines.length) {
                             lines[lines.length - 1].text += ` ${text}`;
@@ -382,12 +279,12 @@
                     return { title: `Scène ${index + 1}`, lines };
                 });
 
-                if (parsedSections.slice(9).some(section => section.lines.length === 0)) {
+                if (parsedSections.some(section => section.lines.length === 0)) {
                     setScriptLoadError(true);
                     return;
                 }
 
-                setSections([...initialSections, ...parsedSections.slice(9)]);
+                setSections(parsedSections);
                 setScriptLoadError(false);
             };
 
@@ -499,7 +396,7 @@
                 const roleGender = sections.flatMap(s => s.lines).find(l => normalizeCharacter(l.character) === selectedRole)?.gender || 'male';
                 const voiceKey = roleGender === 'female' ? 'FEMMES' : 'HOMMES';
                 const opts = { voiceName: selectedVoices[voiceKey], pitch: roleGender === 'female' ? 1.1 : 0.75, rate: speechRate };
-                const cleanText = text.replace(/\([^()]*\)/g, '').replace(/\s+/g, ' ').trim();
+                const cleanText = stripStageDirections(text).replace(/\s+/g, ' ').trim();
                 if (!cleanText) return;
                 const chunks = cleanText.match(/[^,;.!?:]+[.,;!?:]?/g) || [cleanText];
                 presidentChunksRef.current = chunks;
@@ -526,7 +423,7 @@
                         const roleGender = sections.flatMap(s => s.lines).find(l => normalizeCharacter(l.character) === selectedRole)?.gender || 'male';
                         const voiceKey = roleGender === 'female' ? 'FEMMES' : 'HOMMES';
                         const opts = { voiceName: selectedVoices[voiceKey], pitch: roleGender === 'female' ? 1.1 : 0.75, rate: speechRate };
-                        const cleanText = text.replace(/\([^()]*\)/g, '').replace(/\s+/g, ' ').trim();
+                        const cleanText = stripStageDirections(text).replace(/\s+/g, ' ').trim();
                         if (!cleanText) return;
                         const chunks = cleanText.match(/[^,;.!?:]+[.,;!?:]?/g) || [cleanText];
                         presidentChunksRef.current = chunks;
@@ -594,7 +491,7 @@
                 window.speechSynthesis.cancel();
 
                 // Supprimer le texte entre parenthèses (didascalies) - gère les parenthèses imbriquées
-                const textWithoutParentheses = text.replace(/\([^()]*\)/g, '').replace(/\s+/g, ' ').trim();
+                const textWithoutParentheses = stripStageDirections(text).replace(/\s+/g, ' ').trim();
                 
                 // Si tout le texte était entre parenthèses, ne rien lire
                 if (!textWithoutParentheses) {
@@ -648,14 +545,14 @@
 
             // Retourne les deux dernières phrases non-vides d'un texte (sans didascalies)
             const getLastSentence = (text) => {
-                const clean = text.replace(/\([^()]*\)/g, '').replace(/\s+/g, ' ').trim();
+                const clean = stripStageDirections(text).replace(/\s+/g, ' ').trim();
                 const sentences = clean.split(/(?<=[.!?])\s+/).filter(s => s.trim());
                 if (sentences.length <= 2) return clean;
                 return sentences.slice(-2).join(' ');
             };
 
             const allRoles = [...new Set(sections.flatMap(s => s.lines.map(l => normalizeCharacter(l.character))))];
-            const isMyRole = (line) => normalizeCharacter(line.character) === selectedRole;
+            const isMyRole = (line) => !!line && normalizeCharacter(line.character) === selectedRole;
 
             // Réinitialiser le TTS quand on change de rôle
             useEffect(() => {
@@ -920,6 +817,30 @@ if (!isMyRole(line)) {
                 window.speechSynthesis.cancel();
             };
 
+            if (!sections.length) {
+                return React.createElement('div', { className: "min-h-screen p-4 flex items-start justify-center" },
+                    React.createElement('div', { className: "max-w-4xl w-full mx-auto text-center pt-8" },
+                        React.createElement('h1', { className: "text-4xl font-bold mb-4" }, 'Le Petit Prince'),
+                        scriptLoadError
+                            ? React.createElement('label', {
+                                className: "inline-block p-3 text-sm text-slate-700 bg-red-100/90 rounded cursor-pointer"
+                            },
+                                'Sélectionner LEPETITPRINCE_Theatre.txt pour charger les 26 scènes',
+                                React.createElement('input', {
+                                    type: 'file',
+                                    accept: '.txt,text/plain',
+                                    className: 'hidden',
+                                    onChange: (event) => {
+                                        const file = event.target.files?.[0];
+                                        if (file) file.text().then(loadFullScript).catch(() => setScriptLoadError(true));
+                                    }
+                                })
+                            )
+                            : React.createElement('p', { className: "text-slate-700" }, 'Chargement des répliques...')
+                    )
+                );
+            }
+
             const currentLineData = sections[currentSection].lines[currentLine];
 
             return React.createElement('div', { 
@@ -965,7 +886,7 @@ if (!isMyRole(line)) {
                                 className: 'hidden',
                                 onChange: (event) => {
                                     const file = event.target.files?.[0];
-                                    if (file) file.text().then(loadFullScript);
+                                    if (file) file.text().then(loadFullScript).catch(() => setScriptLoadError(true));
                                 }
                             })
                         ),

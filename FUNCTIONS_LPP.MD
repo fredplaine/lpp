@@ -11,12 +11,11 @@ Notes techniques pour préserver les comportements de l'application LPP.
 
 ## Chargement des scènes
 
-- `initialSections` contient les neuf premières scènes éditées manuellement.
 - `loadFullScript(source)` repère les titres avec `/^#\s*SCÈNE\s+(.+)$/gim`. Les deux formes `# SCÈNE` et `#SCÈNE` sont acceptées.
 - Le parseur exige exactement 26 titres; sinon il active le message de chargement manuel.
-- Les scènes 10 à 26 sont lues depuis le texte et ajoutées aux neuf scènes initiales. Ne pas remplacer les scènes éditées par la version OCR des scènes 1 à 9.
+- Les répliques des 26 scènes proviennent exclusivement de `LEPETITPRINCE_Theatre.txt`. Il n'y a pas de copie de secours des répliques dans le code.
 - Les lignes non reconnues comme locuteur sont ajoutées à la réplique précédente. Avant la première réplique, elles sont gardées dans `pendingText`, puis ajoutées à celle-ci. Les didascalies ne deviennent donc pas un personnage.
-- Une didascalie entre parenthèses immédiatement après le nom du locuteur est retirée au début du texte de la réplique.
+- Tout texte entre parenthèses est supprimé du texte chargé, y compris les parenthèses imbriquées et les didascalies réparties sur plusieurs lignes; il n'est ni affiché ni prononcé.
 - Toute modification du nombre ou du format des titres de scène doit être vérifiée avec le parseur et le chargement de la page.
 
 ## Personnages
