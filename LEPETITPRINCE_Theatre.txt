@@ -513,12 +513,13 @@ LE PETIT PRINCE Celui-là… Celui-là serait méprisé par tous les autres, par
 
 L'ALLUMEUR DE RÉVERBÈRES (A conserver ou non?) Bonsoir (le rallume)
 LE PETIT PRINCE (Soupir de regret) Celui-la est le seul dont j’eusse pu faire mon ami. Mais sa planète est vraiment trop petite.Il n'y a pas de place pour deux. 
+
 L’AVIATEUR Ce que le petit prince n'ose pas s’avouer, c’est qu’il regretterait cette planète bénie, à cause, surtout, des mille quatre cent quarante-quatre couchers de soleil par vingt-quatre heures.
-RÉVERBÈRES Bonjour (et l’éteint définitivement)
+
+L'ALLUMEUR DE RÉVERBÈRES Bonjour (et l’éteint définitivement)
 
 
-(Pendant que l’ aviateur parle, le réverbère continue son travail. Le petit prince le regarde avec
-admiration. Sur la dernière réplique de l’ aviateur, le réverbère sera éteint et ainsi la scène).
+(Pendant que l’ aviateur parle, le réverbère continue son travail. Le petit prince le regarde avec admiration. Sur la dernière réplique de l’ aviateur, le réverbère sera éteint et ainsi la scène).
 
 
 # SCÈNE QUINZE
