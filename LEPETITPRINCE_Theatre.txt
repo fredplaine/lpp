@@ -482,8 +482,7 @@ L’AVIATEUR La cinquième planète était très curieuse. C'était la plus peti
 
 LE PETIT PRINCE (un réverbère allumé) Bonjour! Pourquoi viens-tu d’éteindre ton réverbère?
 
-L'ALLUMEUR DE RÉVERBÈRES C’est la consigne. Bonjour! (il se remet à courir)
-(le réverbère monte et descend de l'échelle pour allumer son réverbère)
+L'ALLUMEUR DE RÉVERBÈRES C’est la consigne. Bonjour! (il se remet à courir. L'allumeur de réverbères monte et descend de l'échelle pour allumer son réverbère)
 
 LE PETIT PRINCE Qu'est-ce que la consigne?
 
