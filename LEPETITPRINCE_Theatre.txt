@@ -482,7 +482,9 @@ L’AVIATEUR La cinquième planète était très curieuse. C'était la plus peti
 
 LE PETIT PRINCE (un réverbère allumé) Bonjour! Pourquoi viens-tu d’éteindre ton réverbère?
 
-L'ALLUMEUR DE RÉVERBÈRES C’est la consigne. Bonjour! (il se remet à courir. L'allumeur de réverbères monte et descend de l'échelle pour allumer son réverbère)
+L'ALLUMEUR DE RÉVERBÈRES C’est la consigne. Bonjour!
+(Il se remet à courir.)
+(Le réverbère monte et descend de l'échelle pour allumer son réverbère.)
 
 LE PETIT PRINCE Qu'est-ce que la consigne?
 
@@ -490,11 +492,17 @@ L’ALLUMEUR DE RÉVERBÈRES C’est d'éteindre mon réverbère. Bonsoir.
 
 LE PETIT PRINCE mais pourquoi viens-tu de le rallumer? Je ne comprends pas.
 
-L'ALLUMEUR DE RÉVERBÈRES Il n’y a rien à comprendre.  La consigne, c’est la consigne. Bonjour! (Il éteint puis essuie son front avec un mouchoir à carreaux rouges et s’assoit sur l'échelle) Je fais un métier terrible. JC’était raisonnable autrefois. J’éteignais le matin et j’allumais le soir. J’avais le reste du jour pour me reposer, et le reste de la nuit pour dormir… 
+L'ALLUMEUR DE RÉVERBÈRES Il n’y a rien à comprendre.  La consigne, c’est la consigne. Bonjour!
+(Il éteint puis essuie son front avec un mouchoir à carreaux rouges et s’assoit sur l'échelle)
+
+L'ALLUMEUR DE RÉVERBÈRES Je fais un métier terrible. C’était raisonnable autrefois. J’éteignais le matin et j’allumais le soir. J’avais le reste du jour pour me reposer, et le reste de la nuit pour dormir… 
 
 LE PETIT PRINCE  Et depuis cette époque, la consigne a changé ?
+
 L’ALLUMEUR DE RÉVERBÈRES  La consigne n’a pas changé. C’est bien là le drame ! 
-La planète d'année en année a tourné de plus en plus vite et l’ordre est toujours le même!
+
+L’ALLUMEUR DE RÉVERBÈRES La planète d'année en année a tourné de plus en plus vite et l’ordre est toujours le même!
+
 LE PETIT PRINCE Alors?
 
 L'ALLUMEUR DE RÉVERBÈRES Alors, maintenant qu’elle fait un tour par minute, je n’ai plus une seconde de repos. J’allume et j'éteins une fois par minute!
@@ -525,6 +533,7 @@ L'ALLUMEUR DE RÉVERBÈRES Ce n’est pas de chance.... Bonjour! (et il l’éte
 LE PETIT PRINCE Celui-là… Celui-là serait méprisé par tous les autres, par le roi, par le vaniteux, par le buveur, par le businessman. Cependant c'est le seul qui ne me paraisse pas ridicule. C'est, peut-être, parce qu'il s'occupe d'autre chose que de soi-même.
 
 L'ALLUMEUR DE RÉVERBÈRES (A conserver ou non?) Bonsoir (le rallume)
+
 LE PETIT PRINCE (Soupir de regret) Celui-la est le seul dont j’eusse pu faire mon ami. Mais sa planète est vraiment trop petite.Il n'y a pas de place pour deux. 
 
 L’AVIATEUR Ce que le petit prince n'ose pas s’avouer, c’est qu’il regretterait cette planète bénie, à cause, surtout, des mille quatre cent quarante-quatre couchers de soleil par vingt-quatre heures.
