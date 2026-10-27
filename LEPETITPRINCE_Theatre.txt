@@ -404,7 +404,7 @@ et le plus intelligent de la planète
 LE PETIT PRINCE Mais tu es seul sur ta planète!
 VANITEUX (en le suppliant sous la voix comme pour ne pas se faire entendre) Admire-moi quand
 même! Je t'en prie! Fais-moi plaisir! Moi seul, je suis admiré
-LE PETIT PRINCE Je t’admire, d’accord.(en haussant un peu les épaules) Mais? En quoi cela peut-il bien etre important ?
+LE PETIT PRINCE Je t’admire (haussant les épaules). Mais en quoi cela peut-il bien t’interesser ?
 VANITEUX (à disparaître ) Moi je suis le plus élégant, le plus intelligent de toute la planète, tout le
 planète m’adore, tout le planète me regarde...
 LE PETIT PRINCE Les grandes personnes sont décidément bien bizarres! (et il s’en va)
@@ -524,10 +524,9 @@ L'ALLUMEUR DE RÉVERBÈRES ça ne m’avance pas a grand-chose. Ce que j'aime da
 
 LE PETIT PRINCE Ce n’est pas de chance
 L'ALLUMEUR DE RÉVERBÈRES Ce n’est pas de chance.... Bonjour! (et il l’éteint).
-LE PETIT PRINCE Peut-être que cet homme est absurde, mais le moins ridicule des précédents. Son travail avait un sens. Chaque fois qu’il allume son réverbère, c’est comme s’il donnait naissance à une étoile en plus, ou une fleur et il l’éteint pour les endormir. C'est une très jolie. C’est véritablement utile puisque c’est joli.
-L'ALLUMEUR DE RÉVERBÈRES Bonsoir (le rallume)
-LE PETIT PRINCE Bonsoir 
-LE PETIT PRINCE Celui-la est le seul dont j’eusse pu faire mon ami. Mais sa planète est vraiment trop petite.Il n'y a pas de place pour deux. 
+LE PETIT PRINCE Celui-là… Celui-là serait méprisé par tous les autres, par le roi, par le vaniteux, par le buveur, par le businessman. Cependant c'est le seul qui ne me paraisse pas ridicule. C'est, peut-être, parce qu'il s'occupe d'autre chose que de soi-même.
+L'ALLUMEUR DE RÉVERBÈRES (A conserver ou non?) Bonsoir (le rallume)
+LE PETIT PRINCE (Soupir de regret) Celui-la est le seul dont j’eusse pu faire mon ami. Mais sa planète est vraiment trop petite.Il n'y a pas de place pour deux. 
 L’AVIATEUR Ce que le petit prince n'ose pas s’avouer, c’est qu’il regretterait cette planète bénie, à cause, surtout, des mille quatre cent quarante-quatre couchers de soleil par vingt-quatre heures.
 RÉVERBÈRES Bonjour (et l’éteint définitivement)
 
@@ -642,9 +641,7 @@ LE PETIT PRINCE Qui êtes-vous?
 ÉCHO Qui êtes-vous?.. qui êtes-vous... qui êtes-vous?
 LE PETIT PRINCE Soyez mes amis, je suis seul
 ÉCHO Je suis seul... je suis seul... je suis seul...
-LE PETIT PRINCE Quelle drôle de planète. Elle est toute sèche, rocheuse, pleine de sable. Les hommes
-manquent d'imagination. Ils répètent ce qu’on leur dit. Chez moi j'avais une fleur et elle parlait toujours en premier.
-
+LE PETIT PRINCE Quelle drôle de planète.  Elle est toute sèche, et toute pointue et toute salée. Les hommes manquent d'imagination. Ils répètent ce qu’on leur dit. Chez moi j'avais une fleur: elle parlait toujours la première.
 
 # SCÈNE DIX-NEUF
 
@@ -752,10 +749,8 @@ LE PETIT PRINCE Ils n'étaient pas contents là où ils étaient?
 AIGUILLEUR On n’est jamais content de l’endroit où on est!
 Vrombissement. Un quatrième train arrive.
 LE PETIT PRINCE Ils poursuivent les premiers voyageurs?
-AIGUILLEUR Ils ne poursuivent rien. Ils dorment, ou tout au plus ils bâillent. Seuls les enfants
-écrasent leur nez contre les vitres.
-LE PETIT PRINCE Seuls les enfants savent ce qu’ils cherchent. Ils perdent leur temps pour une poupée
-de chiffon qui devient si importante que si vous la leur enlevez, ils pleurent.
+AIGUILLEUR Ils ne poursuivent rien du tout. Ils dorment la-dedans, ou bien ils bâillent. les enfants Seuls écrasent leur nez contre les vitres.
+LE PETIT PRINCE Les enfants seuls savent ce qu’ils cherchent. Ils perdent du temps pour une poupée de chiffons, et elle devient très importante, et si on la leur enlève, ils pleurent...
 AIGUILLEUR Ils ont de la chance
 Vrombissement. Cinquième illumination rapide.
 
@@ -826,7 +821,7 @@ L’AVIATEUR Parce qu’on va mourir de soif
 (Ils se regardent) 
 LE PETIT PRINCE C'est bien d'avoir eu un ami, même si l'on va mourir. Moi, je suis bien content d'avoir eu un ami renard... 
 LE PETIT PRINCE (comme par intuition) J'ai soif aussi. cherchons un puits...
-L’AVIATEUR Quoi? Un... un puits? (Il le regarde... il ne comprend pas, il est perplexe...)
+L’AVIATEUR Quoi? Un... un puits? (Il le regarde... il ne comprend pas, il est perplexe...) Tu as donc soif, toi aussi ?
 LE PETIT PRINCE. L’eau peut aussi être bonne pour le cœur. (SILENCE). 
 (Petit Prince fatigué, Il s’assied. L’aviateur s’assied près de lui.)
 LE PETIT PRINCE Les étoiles sont belles à cause d’une fleur qu’on ne voit pas.
@@ -920,20 +915,22 @@ toujours mon ami. Et tu ouvriras parfois la fenêtre, comme ça, pour le plaisir
 Ce sera comme si je t'avais donné, au lieu d'étoiles, des tas de petits grelots qui savent rire... (rires.
 puis deviennent sérieux) Cette nuit. tu sais, ne viens pas.
 L’AVIATEUR Non, je ne te quitterai pas.
-LE PETIT PRINCE On dirait que je me sentirai mal. j'aurai un peu l'air de mourir, mais ce n’est pas vrai.
+LE PETIT PRINCE J’aurai l’air d’avoir mal. j'aurai un peu l'air de mourir, mais ce n’est pas vrai.
 C'est comme ça. Ne viens pas voir, ce n’est pas la peine...
 L’AVIATEUR Je ne te quitterai pas
 LE PETIT PRINCE (inquiet) Je te dis ça. C’est à cause aussi du serpent. || ne faut pas qu’il te morde...
-Les serpents c’est méchant. Ça peut vous mordre pour le plaisir d...
+Les serpents c’est méchant. Ça peut vous mordre pour le plaisir...
 L’AVIATEUR Je ne te quitterai pas
+LE PETIT PRINCE C’est vrai qu ils n’ont plus de venin pour la seconde morsure.
 (Il s'éloigne, puis l’Aviateur le rattrape) 
 (PLUS TARD, LA NUIT)
+LE PETIT PRINCE Ah! Tu es la … (il prend la main de l’aviateur, puis toumente:) Tu as eu tort. Tu auras de la peine. J’aurai l’air d’etre mort et ce ne sera pas vrai.
 LE PETIT PRINCE (prend la main de l'aviateur) Tu comprends? C'est trop loin. Je ne peux pas emporter
- ce corps-la. C’est trop lourd. (découragé, puis avec effort) Ce sera bien (gentil), tu sais. Moi aussi, je
+ ce corps-la. C’est trop lourd. (découragé, puis avec effort) Ce sera gentil, tu sais. Moi aussi, je
 regarderai les étoiles. Toutes les étoiles seront des puits avec une poulie rouillée. Toutes les étoiles
 me verseront à boire...
 Ce sera tellement amusant! Tu auras cinq cents millions de grelots, j'aurai cinq cents millions de
-fontaines... (silence, puis il pleure) C’est là. Laisse-moi faire un pas tout seul.
+fontaines... (il pleure ce qui le rend muet) C’est là. Laisse-moi faire un pas tout seul.
 (Il s'assoit parce qu'il a peur).
 
 
