@@ -412,7 +412,7 @@ LE PETIT PRINCE (perplexe) Les grandes personnes sont décidément très très b
 # SCÈNE TREIZE
 
 
-L’AVIATEUR La quatrième planète était habitée par un homme d'affaires.
+L’AVIATEUR La quatrième planète était celle du businessman.
 HOMME D'AFFAIRES (il est tellement pris par ses calculs qu'il ne lève même pas la tête quand le petit prince arrive) il compte
 LE PETIT PRINCE Bonjour!
 HOMME D'AFFAIRES (sans le regarder et agacé) Deux et trois font cinq. Cinq et sept: douze. Douze
@@ -505,9 +505,12 @@ LE PETIT PRINCE Ta planète est tellement petite que tu en fais le tour en trois
 L'ALLUMEUR DE RÉVERBÈRES ça ne m’avance pas a grand-chose. Ce que j'aime dans la vie, c'est dormir.
 
 
-LE PETIT PRINCE Ce n’est pas de chance
+LE PETIT PRINCE Ce n’est pas de chance.
+
 L'ALLUMEUR DE RÉVERBÈRES Ce n’est pas de chance.... Bonjour! (et il l’éteint).
+
 LE PETIT PRINCE Celui-là… Celui-là serait méprisé par tous les autres, par le roi, par le vaniteux, par le buveur, par le businessman. Cependant c'est le seul qui ne me paraisse pas ridicule. C'est, peut-être, parce qu'il s'occupe d'autre chose que de soi-même.
+
 L'ALLUMEUR DE RÉVERBÈRES (A conserver ou non?) Bonsoir (le rallume)
 LE PETIT PRINCE (Soupir de regret) Celui-la est le seul dont j’eusse pu faire mon ami. Mais sa planète est vraiment trop petite.Il n'y a pas de place pour deux. 
 L’AVIATEUR Ce que le petit prince n'ose pas s’avouer, c’est qu’il regretterait cette planète bénie, à cause, surtout, des mille quatre cent quarante-quatre couchers de soleil par vingt-quatre heures.
