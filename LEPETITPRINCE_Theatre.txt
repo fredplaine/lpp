@@ -491,8 +491,6 @@ HOMME D'AFFAIRES C’est bien ça, des étoiles!
 LE PETIT PRINCE Et pourquoi 500 millions d'étoiles?
 HOMME D'AFFAIRES Cinq cents et un million six cent vingt-deux mille sept cent trente un. Je suis un homme sérieux, je-suis un homme précis
 LE PETIT PRINCE Que fais-tu de ces étoiles?
-
-
 HOMME D'AFFAIRES Qu'est-ce que j'en fais?
 LE PETIT PRINCE Oui. Qu'est-ce que tu en fais?
 HOMME D'AFFAIRES Rien! Je les possède!
@@ -520,11 +518,7 @@ LE PETIT PRINCE Qu'est-ce que ça veut dire?
 HOMME D'AFFAIRES Ça veut dire que je peux écrire sur un bout de papier le nombre de mes étoiles et que je peux les enfermer à clé dans un tiroir.
 LE PETIT PRINCE Et c’est tout?
 HOMME D'AFFAIRES ça suffit !
-LE PETIT PRINCE C’est amusant et assez poétique, mais ça n’est pas très sérieux! Moi, sur ma planète,  je possède une fleur que j’arrose tous les jours. Je possède trois volcans, deux allumés et un éteint, que je
-
-
-ramone toutes les semaines. Car je ramone aussi celui qyui est eteint. On ne sait jamais. C'est utile à mes volcans, et c’est utile à ma fleur que je les possède. Mais toi, tu n’es pas
-utile aux étoiles..(il s’en va)
+LE PETIT PRINCE C’est amusant et assez poétique, mais ça n’est pas très sérieux! Moi, sur ma planète,  je possède une fleur que j’arrose tous les jours. Je possède trois volcans, deux allumés et un éteint, que je ramone toutes les semaines. Car je ramone aussi celui qyui est eteint. On ne sait jamais. C'est utile à mes volcans, et c’est utile à ma fleur que je les possède. Mais toi, tu n’es pas utile aux étoiles..(il s’en va)
 HOMME D'AFFAIRES (reste bouche bée sans trouver un mot pour répondre, il ne produit que des
 vers étranges)
 LE PETIT PRINCE (s’en allant) Décidément les grandes personnes sont decidement tout a fait extraordinaires.
@@ -594,15 +588,11 @@ planète. Ce n’est pas le géographe qui va faire le compte des villes, des fl
 mers, des océans et des déserts. Le géographe est trop important pour flâner. Il ne quitte
 pas jamais son bureau, mais il y reçoit les explorateurs, il les interroge et il prend en notes leurs souvenirs. Et si les souvenirs de l’un d’eux lui paraissent intéressants, le géographe fait faire une enquête sur la moralité de l’explorateur.
 LE PETIT PRINCE Pourquoi ça?
-GÉOGRAPHE Parce que si l'explorateur mentait ou était ivre, il apporterait une catastrophe dans les
-livres de géographie. Et aussi, un explorateur qui boirait trop
+GÉOGRAPHE Parce que si l'explorateur mentait ou était ivre, il apporterait une catastrophe dans les livres de géographie. Et aussi, un explorateur qui boirait trop
 LE PETIT PRINCE Pourquoi ça?
-GÉOGRAPHE Parce que les ivrognes voient double et alors le géographe noterait deux montagnes
-là où il n’y en a qu’une seule
+GÉOGRAPHE Parce que les ivrognes voient double et alors le géographe noterait deux montagnes là où il n’y en a qu’une seule
 LE PETIT PRINCE Je connais quelqu’un qui serait mauvais explorateur
 GÉOGRAPHE C'est possible. Donc, quand la moralité de l’explorateur paraît bonne, on fait une enquête sur sa découverte.
-
-
 
 LE PETIT PRINCE On va voir?
 GÉOGRAPHE Non, c’est trop compliqué. Mais l'explorateur doit fournir des preuves. Par exemple,
@@ -665,39 +655,37 @@ SERPENT Je les résous toutes. (pause. Puis il se déplace )
 
 # SCÈNE DIX-HUIT
 
-L’AVIATEUR Le petit prince traversa le désert et fit l’ascension d’ une haute montagne espérant voir d’un coup toute la planète et tous les hommes. Mais il n'aperçut rien que des aiguilles de roc bien aiguisées.
+L’AVIATEUR Le petit prince traversa le désert et fit l’ascension d’une haute montagne. Les seules montagnes qu'il eut vraiment connues etaient les trois volcans qui lui arrivaient au genou. (espérant voir d’un coup toute la planète et tous les hommes. Mais il n'aperçut rien que des aiguilles de roc bien aiguisées.)
 LE PETIT PRINCE Bonjour
 ÉCHO Bonjour... bonjour... bonjour...
 LE PETIT PRINCE Qui êtes-vous?
 ÉCHO Qui êtes-vous?.. qui êtes-vous... qui êtes-vous?
 LE PETIT PRINCE Soyez mes amis, je suis seul
 ÉCHO Je suis seul... je suis seul... je suis seul...
-LE PETIT PRINCE Quelle drôle de planète.  Elle est toute sèche, et toute pointue et toute salée. Les hommes manquent d'imagination. Ils répètent ce qu’on leur dit. Chez moi j'avais une fleur: elle parlait toujours la première.
+LE PETIT PRINCE Quelle drôle de planète.
+L’AVIATEUR Le Petit Prince pensa alors que les hommes manquaient  d'imagination. Ils repetent ce qu'on leur dit. /Chez lui, il avait une fleur: elle parlait toujours la première./
 
 # SCÈNE DIX-NEUF
 
 
-Le Petit Prince rencontre le jardin fleuri. Passage de fleurs.
+L’AVIATEUR Mais il arriva que le petit prince, ayant longuement marche a travers les sables, les rocs et les neiges, decrouvrit enfin une route. Et les routes vont toutes lchez les hommes.
 LE PETIT PRINCE Bonjour
 ROSE (toutes les roses) Bonjour
 LE PETIT PRINCE (Le Petit Prince observe les roses. Elles ressemblent à sa fleur) Qui êtes-vous?
 (stupéfait)
 ROSES Nous sommes les roses
-LE PETIT PRINCE Ah. (plus déçu et se sentant trahi)Je me croyais riche d'une fleur unique au monde,
-et je ne possède qu’une rose quelconque. Elle et mes trois volcans qui m’arrivent aux genoux, et
-dont l’un, peut-être, est éteint pour toujours, ne font pas de moi un prince très important...".
+LE PETIT PRINCE Ah. (plus déçu et se sentant trahi) 
+L’AVIATEUR Sa fleur lui avait racponte qu'elle etait seule de son espece dans l univers et voici  qu il en etait cinq mille, toutes semblables, dans un seul jardin. 
 (Il s’assoit et pleure)
 
 # SCÈNE VINGT
 
 RENARD Bonjour
-LE PETIT PRINCE (// ne voit personne) Bonjour. Mais où es-tu?
+LE PETIT PRINCE (Il ne voit personne) Bonjour. Mais où es-tu?
 RENARD Je suis là... sous le pommier
 LE PETIT PRINCE Qui es-tu?
 RENARD Je suis un renard
 LE PETIT PRINCE Tu es très joli. Tu veux jouer avec moi? Je suis tellement triste
-
-
 RENARD Mais je ne peux pas jouer avec toi, je ne suis pas apprivoisé
 LE PETIT PRINCE Ah Pardon Qu'est-ce que signifie: apprivoisé?
 RENARD Tu n'es pas d'ici, toi: Que cherches-tu?
@@ -714,28 +702,23 @@ moi unique au monde, et je serai pour toi unique au monde
 LE PETIT PRINCE Je commence à comprendre. || y a une fleur... Je crois qu’elle m'a apprivoisé.
 RENARD C'est possible. On voit sur la Terre toute sorte de chose.
 LE PETIT PRINCE Oh! Elle n’est pas sur la Terre
-RENARD (perplexe) Sur une autre planète?
-LE PETIT PRINCE oui
-RENARD || y a des chasseurs sur cette planète?
+RENARD (Perplexe) Sur une autre planète?
+LE PETIT PRINCE Oui
+RENARD Il y a des chasseurs sur cette planète?
 LE PETIT PRINCE Non
 RENARD Ah... ça c’est intéressant. Et des poules?
 LE PETIT PRINCE Non
 RENARD Rien n'est parfait (soupirant) Ma vie est monotone. Je chasse les poules, et les hommes me chassent. Toutes les poules se ressemblent et tous les hommes se ressemblent. Je m'ennuie donc un peu. Mais si tu m’apprivoises, ma vie sera comme ensoleillée. Je reconnaîtrai un bruit de pas qui sera différent de tous les autres. Les autres pas me font rentrer sous terre. Le tien me fera sortir du terrier, comme une musique. Et puis, regarde! Tu vois, là-bas, ces champs de blé? Je ne mange pas le pain et le blé, pour moi c’est inutile. Les champs de blé ne me rappellent rien. Et ça, c'est triste! Mais tu as des cheveux comme l'or. Alors ce sera merveilleux quand tu m’auras
 apprivoisé. Le blé, qui est doré, me fera penser à toi. Et jaimerai le bruit du vent dans le grain (il le regarde longuement puis, le suppliant) S'il te plaît. apprivoise-moi
 LE PETIT PRINCE Je veux bien, mais je n’ai pas beaucoup de temps. J'ai des amis à découvrir, et beaucoup de choses à connaître.
-RENARD On ne connaît que les choses que l’on apprivoise. Les hommes n’ont plus le temps de rien
-connaître. Ils achètent des choses toutes faites dans les magasins. Mais comme il n'existe pas de
-magasins d'amis, les hommes n’ont plus d'amis. Si tu veux un ami, apprivoise-moi.
+RENARD On ne connaît que les choses que l’on apprivoise. Les hommes n’ont plus le temps de rien connaître. Ils achètent des choses toutes faites dans les magasins. Mais comme il n'existe pas de magasins d'amis, les hommes n’ont plus d'amis. Si tu veux un ami, apprivoise-moi.
 LE PETIT PRINCE Que faut-il faire?
-
-
 RENARD Il faut être patient. Au début, tu t’assiéras un peu loin de moi, comme ça, dans l'herbe. Je te regarderai du coin de l'œil et tu ne diras rien. Le langage est source de malentendus, Mais chaque jour tu pourras t’asseoir un peu plus près.
 RENARD Tu reviendras toujours à la même heure. Un peu plus tôt, je commencerai déjà à être
 heureux. Mais si tu viens n’importe quand, je ne saurai jamais à quelle heure me préparer le cœur.
 Il faut des rites.
 LE PETIT PRINCE Qu'est-ce qu’un rite?
-RENARD C'est aussi une chose oubliée depuis longtemps. C'est ce qu’il fait un jour différent des
-autres jours, une heure des autres heures.
+RENARD C'est aussi une chose oubliée depuis longtemps. C'est ce qu’il fait un jour différent des autres jours, une heure des autres heures.
 (Pendant qu'il parle, l’action continue lentement sur la musique. Ils jouent. Nuit. Jour)
 L’AVIATEUR Ainsi le petit prince apprivoisa le renard. Et quand l’heure du départ fut proche..
 RENARD Ah... Je vais pleurer.
