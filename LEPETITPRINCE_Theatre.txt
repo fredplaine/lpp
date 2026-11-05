@@ -432,7 +432,7 @@ LE PETIT PRINCE Les grandes personnes sont décidément bien bizarres! (et il s�
 
 # SCÈNE DOUZE
 
-L’AVIATEUR La planète suivante était habitée par un buveur.
+L’AVIATEUR La planète suivante était habitée par un buveur. Cette visite fut très courte mais elle plongea le petit prince dans une grande mélancolie.
 IVROGNE (il boit, chante, rit et pleure. A des sautes d'humeur soudaines)
 LE PETIT PRINCE (quand il boit) Que faites-vous là?
 IVROGNE (lugubre) Je bois:
@@ -448,7 +448,7 @@ LE PETIT PRINCE (perplexe) Les grandes personnes sont décidément très très b
 # SCÈNE TREIZE
 
 
-L’AVIATEUR La quatrième planète était celle du businessman.
+L’AVIATEURLa quatrième planète était celle du businessman. Cet homme était si occupé qu'il ne leva même pas la tête à l'arrivée du petit prince.
 HOMME D'AFFAIRES (il est tellement pris par ses calculs qu'il ne lève même pas la tête quand le petit prince arrive) il compte
 LE PETIT PRINCE Bonjour!
 HOMME D'AFFAIRES (sans le regarder et agacé) Deux et trois font cinq. Cinq et sept: douze. Douze
@@ -508,8 +508,7 @@ LE PETIT PRINCE (s’en allant) Décidément les grandes personnes sont decideme
 
 # SCÈNE QUATORZE
 
-L’AVIATEUR La cinquième planète était très curieuse. C'était la plus petite de toutes. Il y avait là juste assez de place pour loger un réverbère et un allumeur de réverbères. Le petit prince ne parvenait pas à s'expliquer à quoi pouvaient servir, quelque part dans le ciel, sur une planète sans maison ni population, un réverbère et un allumeur de réverbères.
-
+L’AVIATEUR La cinquième planète était très curieuse. C'était la plus petite de toutes. Il y avait là juste assez de place pour loger un réverbère et un allumeur de réverbères. Le petit prince ne parvenait pas à s'expliquer à quoi pouvaient servir, quelque part dans le ciel, sur une planète sans maison, ni population, un réverbère et un allumeur de réverbères.
 LE PETIT PRINCE (un réverbère allumé) Bonjour! Pourquoi viens-tu d’éteindre ton réverbère?
 L’ALLUMEUR DE RÉVERBÈRES C’est la consigne. Bonjour!
 (Il se remet à courir.)
@@ -605,7 +604,7 @@ les villes, des hommes, et beaucoup de chaos)
 
 # SCÈNE SEIZE
 
-L’AVIATEUR La septième planète fut donc la Terre. La Terre n’est pas une planète quelconque. On y compte cent-onze rois, sept mille géographes neuf cent mille businessmen, sept million et demi d’ivrognes et trois cent onze millions de vaniteux. C’est à dire environ deux milliards de grandes personnes!
+L’AVIATEUR La septième planète fut donc la Terre. La Terre n’est pas une planète quelconque. On y compte cent-onze rois, sept milles géographes neuf cent mille businessmen, sept million et demi d’ivrognes et trois cent onze millions de vaniteux. C'est-à-dire environ deux milliards de grandes personnes! Les hommes occupent très peu de place sur la Terre. Ils logeraient aisément sur une place publique de vingt  milles de long sur vingt milles de large. On pourrait entasser l'humanité sur le moindre petit îlot du Pacifique. Les grandes personnes, bien sûr, ne vous croiront pas. Elles s'imaginent tenir beaucoup de place. Elles se voient importantes comme des baobabs. 
 
 # SCÈNE DIX-SEPT
 
@@ -645,10 +644,9 @@ LE PETIT PRINCE Qui êtes-vous?
 LE PETIT PRINCE Soyez mes amis, je suis seul
 ÉCHO Je suis seul... je suis seul... je suis seul...
 LE PETIT PRINCE Quelle drôle de planète.
-L’AVIATEUR Le Petit Prince pensa alors que les hommes manquaient  d'imagination. Ils repetent ce qu'on leur dit. /Chez lui, il avait une fleur: elle parlait toujours la première./
+L’AVIATEUR Le petit prince pensa alors que les hommes manquaient d'imagination. Ils répètent ce qu’on leur dit. Chez lui, il avait une fleur: elle parlait toujours la première.
 
 # SCÈNE DIX-NEUF
-
 
 L’AVIATEUR  Mais il arriva que le petit prince, ayant longuement marché à travers les sables, les rocs et les neiges, découvrit enfin une route. Et les routes vont toutes chez les hommes.
 LE PETIT PRINCE Bonjour
@@ -658,7 +656,9 @@ LE PETIT PRINCE (Le Petit Prince observe les roses. Elles ressemblent à sa fleu
 ROSES Nous sommes les roses
 LE PETIT PRINCE Ah. (plus déçu et se sentant trahi) 
 L’AVIATEUR Sa fleur lui avait raconté qu'elle était seule de son espèce dans l' univers et voici  qu' il en était cinq mille, toutes semblables, dans un seul jardin. 
-(Il s’assoit et pleure)
+LE PETIT PRINCE Elle serait bien vexée, se dit-il, si elle voyait ça...elle tousserait énormément et ferait semblant de mourir pour échapper au ridicule. Et je serais bien obligé de faire semblant de la soigner, car, sinon, pour m'humilier moi aussi, elle se laisserait vraiment mourir..."
+(Pause) Je me croyais riche d'une fleur unique, et je ne possède qu'une rose ordinaire. Ça et mes trois volcans qui m'arrivent au genou, et dont l'un, peut-être, est éteint pour toujours, ça ne fait pas de moi un bien grand prince..." 
+(Et, couché dans l'herbe, il pleura.)
 
 # SCÈNE VINGT
 
