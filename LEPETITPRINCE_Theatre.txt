@@ -282,11 +282,11 @@ FLEUR (ne répond pas)
 
 LE PETIT PRINCE (répète nettement) Adieu!
 
-FLEUR (Sans la cloche. elle tousse alors avec une grande douceur) J’ai été sotte! Je te demande pardon, essaie d’être heureux!. Mais oui, je t’aime. Tu n’en as rien su, par ma faute. Cela n’a aucune importance. Mais tu as été aussi sot que moi.  Essaie d’être heureux! Ce paravent n'est plus nécessaire. 
+FLEUR (Elle tousse, mais ce n'etait pas a cause de son rhume) J’ai été sotte! Je te demande pardon, essaie d’être heureux!. Mais oui, je t’aime. Tu n’en as rien su, par ma faute. Cela n’a aucune importance. Mais tu as été aussi sot que moi.  Essaie d’être heureux! Ce paravent n'est plus nécessaire. 
 
 LE PETIT PRINCE Mais le vent...
 
-FLEUR je ne suis pas si enrhumée que ça. L’air frais de la nuit me fera du bien. Je suis une fleur.
+FLEUR Je ne suis pas si enrhumée que ça. L’air frais de la nuit me fera du bien. Je suis une fleur.
 
 LE PETIT PRINCE Mais les bêtes...
 
@@ -492,10 +492,8 @@ HOMME D'AFFAIRES Ça veut dire que je peux écrire sur un bout de papier le nomb
 LE PETIT PRINCE Et c’est tout?
 HOMME D'AFFAIRES ça suffit !
 LE PETIT PRINCE C’est amusant et assez poétique, mais ça n’est pas très sérieux! Moi, sur ma planète,  je possède une fleur que j’arrose tous les jours. Je possède trois volcans, deux allumés et un éteint, que je ramone toutes les semaines. Car je ramone aussi celui qyui est eteint. On ne sait jamais. C'est utile à mes volcans, et c’est utile à ma fleur que je les possède. Mais toi, tu n’es pas utile aux étoiles..(il s’en va)
-HOMME D'AFFAIRES (reste bouche bée sans trouver un mot pour répondre, il ne produit que des
-vers étranges)
+HOMME D'AFFAIRES (reste bouche bée sans trouver un mot pour répondre, il ne produit que des vers étranges)
 LE PETIT PRINCE (s’en allant) Décidément les grandes personnes sont decidement tout a fait extraordinaires.
-
 
 # SCÈNE QUATORZE
 
@@ -534,7 +532,6 @@ L'AVIATEUR Ce que le petit prince n'osait pas s’avouer, c’est qu’il regret
 L’ALLUMEUR DE RÉVERBÈRES Bonjour (et l’éteint définitivement)
 
 (Pendant que l’ aviateur parle, l' allumeur de réverbère continue son travail. Le petit prince le regarde avec admiration. Sur la dernière réplique de l’ aviateur, le réverbère sera éteint et ainsi la scène).
-
 
 # SCÈNE QUINZE
 
