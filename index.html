@@ -116,6 +116,38 @@
             return result;
         };
 
+        const splitStageDirections = (text) => {
+            const segments = [];
+            let depth = 0;
+            let content = '';
+            let isStageDirection = false;
+
+            for (const character of text) {
+                if (character === '(') {
+                    if (depth === 0) {
+                        if (content) segments.push({ text: content, isStageDirection: false });
+                        content = '';
+                        isStageDirection = true;
+                    }
+                    depth += 1;
+                    content += character;
+                } else if (character === ')' && depth > 0) {
+                    content += character;
+                    depth -= 1;
+                    if (depth === 0) {
+                        segments.push({ text: content, isStageDirection: true });
+                        content = '';
+                        isStageDirection = false;
+                    }
+                } else {
+                    content += character;
+                }
+            }
+
+            if (content) segments.push({ text: content, isStageDirection });
+            return segments;
+        };
+
         const normalizeCharacter = (character) => {
             const normalized = character.replace(/'/g, '’').trim().toLocaleUpperCase('fr-FR');
             if (/^(?:L’)?AVIATEUR$/.test(normalized)) return 'L’AVIATEUR';
@@ -138,6 +170,7 @@
             const [revealedLine, setRevealedLine] = useState(false);
             const [isPlaying, setIsPlaying] = useState(false);
             const [turboMode, setTurboMode] = useState(false);
+            const [showStageDirections, setShowStageDirections] = useState(false);
             const [showPrompter, setShowPrompter] = useState(false);
             const [prompterDelay, setPrompterDelay] = useState(3); // secondes avant révélation (1-9)
             const [prompterTimer, setPrompterTimer] = useState(3); // compteur actuel
@@ -166,6 +199,7 @@
                     setSentencePause(settings.sentencePause || 0.75);
                     setSelectedVoices(settings.selectedVoices || {});
                     setPrompterDelay(settings.prompterDelay || 3);
+                    setShowStageDirections(settings.showStageDirections === true);
                     if (settings.selectedRole) setSelectedRole(normalizeCharacter(settings.selectedRole));
                 }
 
@@ -197,9 +231,17 @@
                     sentencePause,
                     selectedVoices,
                     prompterDelay,
-                    selectedRole
+                    selectedRole,
+                    showStageDirections
                 };
                 localStorage.setItem('femmesTRAE_settings', JSON.stringify(settings));
+            };
+
+            const toggleStageDirections = () => {
+                const nextValue = !showStageDirections;
+                setShowStageDirections(nextValue);
+                const settings = JSON.parse(localStorage.getItem('femmesTRAE_settings') || '{}');
+                localStorage.setItem('femmesTRAE_settings', JSON.stringify({ ...settings, showStageDirections: nextValue }));
             };
 
             // Sauvegarder les marque-pages
@@ -219,7 +261,7 @@
             const [scriptLoadError, setScriptLoadError] = useState(false);
 
             const loadFullScript = (source) => {
-                const script = stripStageDirections(source);
+                const script = source;
                 const headers = [...script.matchAll(/^#\s*SCÈNE\s+(.+)$/gim)];
                 if (headers.length !== 26) {
                     setScriptLoadError(true);
@@ -449,11 +491,12 @@
                     delete newBookmarks[key];
                 } else {
                     const currentLineData = sections[currentSection].lines[currentLine];
+                    const bookmarkText = stripStageDirections(currentLineData.text);
                     newBookmarks[key] = {
                         section: currentSection,
                         line: currentLine,
                         character: currentLineData.character,
-                        text: currentLineData.text.substring(0, 50) + (currentLineData.text.length > 50 ? '...' : ''),
+                        text: bookmarkText.substring(0, 50) + (bookmarkText.length > 50 ? '...' : ''),
                         date: new Date().toISOString(),
                         category: 'À travailler' // Par défaut
                     };
@@ -646,6 +689,31 @@
                 
                 // 'full' ou 'audio' : afficher le texte complet
                 return text;
+            };
+
+            const renderLineText = (text) => splitStageDirections(text).map((segment, index) =>
+                segment.isStageDirection
+                    ? (showStageDirections
+                        ? React.createElement('span', { key: index, className: 'italic' }, segment.text)
+                        : null)
+                    : React.createElement('span', { key: index }, segment.text)
+            );
+
+            const renderPrompterText = (text) => {
+                const cleanText = stripStageDirections(text).replace(/\s+/g, ' ').trim();
+                if (prompterState === 'full' || prompterState === 'audio') {
+                    return renderLineText(text);
+                }
+
+                const stageDirections = showStageDirections
+                    ? splitStageDirections(text).filter(segment => segment.isStageDirection)
+                    : [];
+                return [
+                    getPrompterText(cleanText),
+                    ...stageDirections.map((segment, index) =>
+                        React.createElement('span', { key: `stage-${index}`, className: 'italic' }, ` ${segment.text}`)
+                    )
+                ];
             };
 
             // Gestion des gestes tactiles
@@ -915,15 +983,25 @@ if (!isMyRole(line)) {
                             React.createElement('p', { className: "text-sm text-slate-700" },
                                 `${currentLine + 1} / ${sections[currentSection].lines.length} lignes`
                             ),
-                            React.createElement('button', {
-                                onClick: () => setTurboMode(!turboMode),
-                                className: `flex items-center gap-2 px-3 py-1 rounded-lg text-sm transition-all ${
-                                    turboMode ? 'bg-amber-200 text-slate-900 shadow-md shadow-amber-300/50' : 'bg-white/60 text-slate-800 hover:bg-white/90'
-                                }`,
-                                title: "Mode Turbo : saute à la réplique juste avant le Président"
-                            },
-                                React.createElement(ZapIcon),
-                                turboMode ? 'Mode Turbo ⚡' : 'Mode Normal'
+                            React.createElement('div', { className: "flex items-center gap-2" },
+                                React.createElement('button', {
+                                    onClick: toggleStageDirections,
+                                    'aria-pressed': showStageDirections,
+                                    className: `px-3 py-1 rounded-lg text-sm transition-all ${
+                                        showStageDirections ? 'bg-yellow-100 text-slate-900 shadow-md shadow-yellow-300/50' : 'bg-white/60 text-slate-800 hover:bg-white/90'
+                                    }`,
+                                    title: "Afficher ou masquer les didascalies"
+                                }, 'Didascalies'),
+                                React.createElement('button', {
+                                    onClick: () => setTurboMode(!turboMode),
+                                    className: `flex items-center gap-2 px-3 py-1 rounded-lg text-sm transition-all ${
+                                        turboMode ? 'bg-amber-200 text-slate-900 shadow-md shadow-amber-300/50' : 'bg-white/60 text-slate-800 hover:bg-white/90'
+                                    }`,
+                                    title: "Mode Turbo : saute à la réplique juste avant le Président"
+                                },
+                                    React.createElement(ZapIcon),
+                                    turboMode ? 'Mode Turbo ⚡' : 'Mode Normal'
+                                )
                             )
                         )
                     ),
@@ -970,7 +1048,7 @@ if (!isMyRole(line)) {
                                                      presidentSpeechState === 'paused' ? 'Cliquer pour reprendre' :
                                                      'Cliquer pour entendre · Double-tap pour reprendre depuis le début')
                                             }, 
-                                                showPrompter ? getPrompterText(currentLineData.text) : currentLineData.text
+                                                showPrompter ? renderPrompterText(currentLineData.text) : renderLineText(currentLineData.text)
                                             ),
                                             !showPrompter && React.createElement('p', { className: "text-sky-800/80 text-sm mt-2 italic" },
                                                 presidentSpeechState === 'playing' ? '⏸ Cliquez pour mettre en pause' :
@@ -983,7 +1061,7 @@ if (!isMyRole(line)) {
                                             onClick: () => setRevealedLine(true)
                                         }, 'Cliquez pour révéler votre texte')
                                 ) :
-                                React.createElement('p', { className: "text-slate-700 text-display" }, currentLineData.text)
+                                React.createElement('p', { className: "text-slate-700 text-display" }, renderLineText(currentLineData.text))
                         )
                     ),
                     React.createElement('div', { className: "flex justify-center gap-3 mb-6 mobile-controls" },

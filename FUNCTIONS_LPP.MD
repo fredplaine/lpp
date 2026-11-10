@@ -15,7 +15,7 @@ Notes techniques pour préserver les comportements de l'application LPP.
 - Le parseur exige exactement 26 titres; sinon il active le message de chargement manuel.
 - Les répliques des 26 scènes proviennent exclusivement de `LEPETITPRINCE_Theatre.txt`. Il n'y a pas de copie de secours des répliques dans le code.
 - Les lignes non reconnues comme locuteur sont ajoutées à la réplique précédente. Avant la première réplique, elles sont gardées dans `pendingText`, puis ajoutées à celle-ci. Les didascalies ne deviennent donc pas un personnage.
-- Tout texte entre parenthèses est supprimé du texte chargé, y compris les parenthèses imbriquées et les didascalies réparties sur plusieurs lignes; il n'est ni affiché ni prononcé.
+- Tout texte entre parenthèses est conservé dans les répliques, y compris les parenthèses imbriquées et les didascalies réparties sur plusieurs lignes. Il est masqué par défaut et n'est jamais prononcé.
 - Toute modification du nombre ou du format des titres de scène doit être vérifiée avec le parseur et le chargement de la page.
 
 ## Personnages
@@ -51,6 +51,12 @@ Notes techniques pour préserver les comportements de l'application LPP.
 - La cue line est lue avec `getLastSentence(text)`, qui conserve les deux dernières phrases; la réplique du rôle est ensuite lue normalement.
 - Préserver le passage à la section suivante et l'arrêt en fin de pièce quand aucune cue line ne reste.
 
+## Didascalies
+
+- L'option `Didascalies`, à gauche du bouton Turbo/Normal, affiche les passages entre parenthèses en italiques; elle est masquée par défaut.
+- Le choix est enregistré dans `femmesTRAE_settings` avec les autres préférences.
+- Les didascalies restent exclues de la synthèse vocale par `stripStageDirections`; préserver ce comportement pour la lecture normale, le souffleur et le mode Turbo.
+
 ## Souffleur
 
 - Le souffleur ne s'applique qu'à une réplique correspondant à `isMyRole(currentLineData)`.
@@ -70,5 +76,6 @@ Notes techniques pour préserver les comportements de l'application LPP.
 - Le chargement HTTP affiche 26 scènes et les boutons I à XXVI.
 - Tester la grille sur mobile étroit : 7 colonnes, aucune barre de défilement horizontale, numéros contenus dans les boutons.
 - Vérifier le menu des rôles : aucune entrée en double pour l'Allumeur, les Roses, l'Aviateur ou l'Homme d'affaires.
+- Vérifier l'affichage/masquage des didascalies, leur style italique et leur absence de la lecture vocale.
 - Vérifier le changement de rôle sur une réplique, la révélation, lecture/pause/reprise, Turbo, souffleur et navigation.
 - Publier uniquement les fichiers LPP nécessaires; ne pas ajouter `fec.html` ni les autres fichiers FEC au commit.
