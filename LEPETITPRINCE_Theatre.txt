@@ -223,9 +223,9 @@ L'AVIATEUR (il le prend dans ses bras et le console) La fleur que tu aimes n’e
 
 # SCÈNE HUIT
 
-L’AVIATEUR J'appris bien vite à mieux connaître cette fleur. (Elle avait surgi un jour, d’une graine qui venait d’on ne sait où et qui n’a jamais cessé de se préparer à être belle. Elle choisissait avec soin ses couleurs, s’habillait lentement, elle ajustait ses pétales un à un. Elle ne voulait pas sortir fripée comme un coquelicot. Elle ne voulait qu’apparaître dans toute la splendeur de sa beauté. Eh, oui, elle était très coquette! Sa mystérieuse coiffure avait donc duré des jours et des jours. Et puis, un matin, juste au lever du soleil, elle s'était montrée. )
+L’AVIATEUR J'appris bien vite à mieux connaître cette fleur. Elle avait surgi un jour, d’une graine qui venait d’on ne sait où... (et qui n’a jamais cessé de se préparer à être belle. Elle choisissait avec soin ses couleurs, s’habillait lentement, elle ajustait ses pétales un à un. Elle ne voulait pas sortir fripée comme un coquelicot. Elle ne voulait qu’apparaître dans toute la splendeur de sa beauté. Eh, oui, elle était très coquette! Sa mystérieuse coiffure avait donc duré des jours et des jours. Et puis, un matin, juste au lever du soleil, elle s'était montrée. )
 
-FLEUR Ah! Je me réveille à peine. Je vous demande pardon... Je suis encore toute décoiffée
+FLEUR Ah! Je me réveille à peine. Je vous demande pardon... Je suis encore toute décoiffée.
 
 LE PETIT PRINCE (avec admiration) Que vous êtes belle!
 
