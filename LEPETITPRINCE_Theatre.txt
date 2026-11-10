@@ -159,7 +159,7 @@ LE PETIT PRINCE  Ben! Voyons! Les graines de baobab sont terribles. Le sol de ma
 
 L'AVIATEUR (hoche la tête)
 
-LE PETIT PRINCE C’est une question de discipline.Quand on a terminé sa toilette du matin, il faut faire soigneusement la toilette de la planète C’est un travail très ennuyeux, mais très facile.
+LE PETIT PRINCE C’est une question de discipline.Quand on a terminé sa toilette du matin, il faut faire soigneusement la toilette de la planète. C’est un travail très ennuyeux, mais très facile.
 
 L'AVIATEUR Les enfants! (Faites attention) Prenez garde aux baobabs!
 
@@ -187,7 +187,7 @@ L'AVIATEUR Le jour des quarante-quatre fois, tu étais donc tellement triste?
 
 L'AVIATEUR Le cinquième jour, toujours grâce au mouton, ce secret de la vie du petit prince me fut révélé.
 
-LE PETIT PRINCE (change brusquement de ton) Un mouton s’il mange les arbustes, mange-t-il aussi les fleurs?
+LE PETIT PRINCE (brusquement, sans preambule) Un mouton s’il mange les arbustes, il mange aussi les fleurs?
 
 L'AVIATEUR Un mouton mange tout ce qu’il rencontre.
 
@@ -195,8 +195,7 @@ LE PETIT PRINCE Même les fleurs qui ont des épines?
 
 L'AVIATEUR Oui. Même les fleurs qui ont des épines.
 
-LE PETIT PRINCE Alors les épines, à quoi servent-elles ?
-(L’aviateur ne répond pas avec l'intention de dévisser un boulon moteur... pause)
+LE PETIT PRINCE Alors les épines, à quoi servent-elles ? (L’aviateur ne répond pas avec l'intention de dévisser un boulon moteur... pause)
 
 LE PETIT PRINCE (insistant sur la réponse qui n'arrive pas) Les épines, à quoi servent-elles ?
 
@@ -212,7 +211,7 @@ LE PETIT PRINCE (le dérangeant encore) Et tu crois, toi, que les fleurs...
 
 L'AVIATEUR (impatienté par les questions continues) Mais non! Mais non! Je ne crois rien! J'ai répondu n'importe quoi. Je m'occupe, moi,  de choses sérieuses!
 
-LE PETIT PRINCE (étonné!) Des choses sérieuses! (Puis immédiatement avec reproche) Tu parles comme les grandes personnes! Tu confonds tout... tu mélanges tout! (agacé et irrité) Je connais une planète ou il y a un M. Cramoisi. Il n’a jamais respiré une fleur. Il n’a jamais regardé une étoile. Il n’a jamais aimé personne. Il n'a jamais rien fait d'autre que des additions. Et toute la journée, il répète comme toi: “Je suis un homme sérieux! Je suis un homme sérieux!” et ça le fait gonfler d’orgueil. Mais ce n’est pas un homme, c’est un champignon!
+LE PETIT PRINCE (Stupefait!) Des choses sérieuses! (Puis immédiatement avec reproche) Tu parles comme les grandes personnes! Tu confonds tout... tu mélanges tout! (agacé et irrité) Je connais une planète ou il y a un M. Cramoisi. Il n’a jamais respiré une fleur. Il n’a jamais regardé une étoile. Il n’a jamais aimé personne. Il n'a jamais rien fait d'autre que des additions. Et toute la journée, il répète comme toi: “Je suis un homme sérieux! Je suis un homme sérieux!” et ça le fait gonfler d’orgueil. Mais ce n’est pas un homme, c’est un champignon!
 
 L'AVIATEUR Un quoi?
 
