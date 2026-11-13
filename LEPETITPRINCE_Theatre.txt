@@ -223,7 +223,7 @@ L'AVIATEUR (il le prend dans ses bras et le console) La fleur que tu aimes n’e
 
 # SCÈNE HUIT
 
-L’AVIATEUR J'appris bien vite à mieux connaître cette fleur. Elle avait surgi un jour, d’une graine qui venait d’on ne sait où... Elle choisissait avec soin ses couleurs, s’habillait lentement, elle ajustait ses pétales un à un. Elle ne voulait pas sortir fripée comme un coquelicot. Elle ne voulait qu’apparaître dans toute la splendeur de sa beauté. Eh, oui, elle était très coquette!
+L’AVIATEUR J'appris bien vite à mieux connaître cette fleur. Elle avait surgi un jour, d’une graine qui venait d’on ne sait où... Elle choisissait avec soin ses couleurs. Elle s’habillait lentement, elle ajustait ses pétales un à un. Elle ne voulait pas sortir toute fripée comme les coquelicots. Elle ne voulait apparaître que dans le plein rayonnement de sa beauté. Eh, oui! Elle était très coquette!
 
 FLEUR Ah! Je me réveille à peine. Je vous demande pardon... Je suis encore toute décoiffée.
 
