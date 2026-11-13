@@ -2,7 +2,7 @@
 
 # SCÈNE UN
 
-L’AVIATEUR Lorsque j’avais six ans, j’ai vu, une fois, une magnifique image dans un livre sur la forêt vierge qui s’appelait Histoires vécues. (le dessin apparaît à l'écran) On disait dans le livre: Les serpents boas avalent leur proie toute entière, sans la mâcher.
+L’AVIATEUR - une fois, lorsque j’avais six ans, j’ai vu une magnifique image dans un livre sur la forêt vierge qui s’appelait Histoires vécues. (le dessin apparaît à l'écran) On disait dans le livre: Les serpents boas avalent leur proie toute entière, sans la mâcher.
 
 L’AVIATEUR J'ai alors beaucoup réfléchi sur les aventures de la jungle et, à mon tour, j'ai réussi, avec un crayon de couleur, à tracer mon premier dessin. Mon dessin numero 1. Il était comme ça: (le dessin apparaît à l'écran)
 
@@ -338,7 +338,6 @@ ROI (qui s’empresse de répondre) Je t’ordonne de m’interroger
 LE PETIT PRINCE Sire… sur quoi régnez-vous?
 ROI (avec une grande simplicité) Sur tout!
 
-
 LE PETIT PRINCE Sur tout?
 (Le roi d'un geste discret désigna sa planète, les autres planètes et les étoiles.)
 LE PETIT PRINCE Sur tout ça ?
@@ -486,7 +485,6 @@ LE PETIT PRINCE (s’en allant) Décidément les grandes personnes sont decideme
 L’AVIATEUR La cinquième planète était très curieuse. C'était la plus petite de toutes. Il y avait là juste assez de place pour loger un réverbère et un allumeur de réverbères. Le petit prince ne parvenait pas à s'expliquer à quoi pouvaient servir, quelque part dans le ciel, sur une planète sans maison, ni population, un réverbère et un allumeur de réverbères.
 LE PETIT PRINCE (un réverbère allumé) Bonjour! Pourquoi viens-tu d’éteindre ton réverbère?
 L’ALLUMEUR DE RÉVERBÈRES C’est la consigne. Bonjour!
-(Il se remet à courir.)
 (L'allumeur de réverbères monte et descend de l'échelle pour allumer son réverbère.)
 LE PETIT PRINCE Qu'est-ce que la consigne?
 L’ALLUMEUR DE RÉVERBÈRES C’est d'éteindre mon réverbère. Bonsoir.
