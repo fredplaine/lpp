@@ -409,15 +409,15 @@ LE PETIT PRINCE - Les grandes personnes sont décidément bien bizarres! (et il 
 # SCÈNE DOUZE
 
 L'AVIATEUR - La planète suivante était habitée par un buveur. Cette visite fut très courte mais elle plongea le petit prince dans une grande mélancolie.
-IVROGNE - (il boit, chante, rit et pleure. A des sautes d'humeur soudaines)
+LE BUVEUR - (il boit, chante, rit et pleure. A des sautes d'humeur soudaines)
 LE PETIT PRINCE - (quand il boit) Que fais-tu là?
-IVROGNE - (lugubre) Je bois.
+LE BUVEUR - (lugubre) Je bois.
 LE PETIT PRINCE - Pourquoi bois-tu?
-IVROGNE - Pour oublier.
+LE BUVEUR - Pour oublier.
 LE PETIT PRINCE - Pour oublier quoi?
-IVROGNE - Pour oublier que j'ai honte (en baissant la tête)
+LE BUVEUR - Pour oublier que j'ai honte (en baissant la tête)
 LE PETIT PRINCE - Honte de quoi? (en essayant de l'aider)
-IVROGNE - Honte de boire! (et il s'endort brusquement ronflant)
+LE BUVEUR - Honte de boire! (et il s'endort brusquement ronflant)
 LE PETIT PRINCE - (perplexe) Les grandes personnes sont décidément très très bizarres. (il s’en va)
 
 # SCÈNE TREIZE
